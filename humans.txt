@@ -1,0 +1,19 @@
+/* TEAM */
+    Autore: prof. Omar Ceretta
+    Ruolo: Ideazione, sviluppo, testing didattico
+    Sede: I.C. di Tombolo e Galliera Veneta (PD), Italia
+    Sito: https://postiperfetti.it/
+    Contatto: ceretta.omar [at] ictombologalliera.edu.it
+
+/* RINGRAZIAMENTI */
+    Sviluppato con l'assistenza di Claude (Anthropic) e GPT (OpenAI),
+    impiegati come assistenti di programmazione (vibe coding).
+
+/* SITE */
+    Ultimo aggiornamento: 2026/08/08
+    Linguaggio: Italiano
+    Tecnologie: HTML5, CSS3, JavaScript
+    Applicazione: Python 3, PySide6 (Qt), XlsxWriter
+    Licenza sito: CC BY-NC-SA 4.0
+    Hosting: Netlify
+    Tracciamento: nessuno (no cookie, no analytics, no pixel)

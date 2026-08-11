@@ -1,0 +1,3 @@
+# Reindirizza permanentemente il vecchio sottodominio Netlify
+# verso il nuovo dominio personalizzato (evita contenuti duplicati per Google)
+https://postiperfetti.netlify.app/*  https://postiperfetti.it/:splat  301!
