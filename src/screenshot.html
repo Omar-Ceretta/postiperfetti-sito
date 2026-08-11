@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- =============================================================================
+     PostiPerfetti — PAGINA "SCREENSHOT" (screenshot.html)
+     ============================================================================ -->
+<html lang="it">
+<head>
+
+<!-- COMPONENT:HEAD -->
+
+</head>
+
+<body>
+
+  <!-- COMPONENT:HEADER -->
+
+<main id="contenuto-principale">
+
+    <section class="caratteristiche">
+      <div class="contenitore">
+
+        <span class="occhiello">Screenshot</span>
+        <h1 class="sezione-titolo">Le schermate principali di «PostiPerfetti».</h1>
+        <p class="sezione-intro">
+          Queste sono le 5 schede del programma: <i>Editor studenti</i>, <i>Aula</i>,
+          <i>Report</i>, <i>Storico</i> e <i>Statistiche</i>. Ognuna serve a un momento
+          preciso del lavoro.
+        </p>
+
+        <h2 class="sr-only">Le schede del programma</h2>
+
+        <div class="griglia-screenshot">
+
+          <article class="scheda-screenshot evidenziata">
+            <button type="button" class="anteprima-bottone"
+                    data-chiaro="img/tema_chiar-ok_omino.png"
+                    data-scuro="img/tema_scur-ok_omino.png"
+                    data-titolo="Tema chiaro e scuro"
+                    data-suggerimento="Clicca su ☀️ 🌙 e confronta i temi."
+                    aria-label="Ingrandisci lo screenshot: Tema chiaro e scuro (disponibile in tema chiaro e scuro)">
+              <img src="img/tema_chiar-ok_omino.png" alt="Schermata del tema chiaro e scuro" width="1025" height="665">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>☀️ 🌙 Tema chiaro e scuro</h3>
+              <p>L'interfaccia del programma può essere usata sia in
+                 modalità chiara che in modalità scura, in base alle
+                 preferenze.</p>
+            </div>
+          </article>
+
+          <article class="scheda-screenshot">
+            <button type="button" class="anteprima-bottone"
+                    data-chiaro="img/editor-studenti_chiaro.png"
+                    data-scuro="img/editor-studenti_scuro.png"
+                    data-titolo="Editor studenti"
+                    aria-label="Ingrandisci lo screenshot: Editor studenti (disponibile in tema chiaro e scuro)">
+              <img src="img/editor-studenti_chiaro.png" alt="Schermata dell'Editor studenti" width="2050" height="1330" loading="lazy" decoding="async">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>✏️ Editor studenti</h3>
+              <p>Qui prepari la classe, aggiungi dati, posizioni, affinità e
+                 incompatibilità.</p>
+            </div>
+          </article>
+
+          <article class="scheda-screenshot">
+            <button type="button" class="anteprima-bottone"
+                    data-full="img/aula.png"
+                    data-titolo="Aula"
+                    aria-label="Ingrandisci lo screenshot: Aula">
+              <img src="img/aula.png" alt="Schermata dell'Aula" width="960" height="600" loading="lazy" decoding="async">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>🏫 Aula</h3>
+              <p>Visualizza la disposizione dei banchi, salva l'assegnazione
+                 ed esporta il layout.</p>
+            </div>
+          </article>
+
+          <article class="scheda-screenshot">
+            <button type="button" class="anteprima-bottone"
+                    data-full="img/report.png"
+                    data-titolo="Report"
+                    aria-label="Ingrandisci lo screenshot: Report">
+              <img src="img/report.png" alt="Schermata del Report" width="960" height="600" loading="lazy" decoding="async">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>📊 Report</h3>
+              <p>Mostra punteggi, vincoli e note sugli abbinamenti
+                 generati.</p>
+            </div>
+          </article>
+
+          <article class="scheda-screenshot">
+            <button type="button" class="anteprima-bottone"
+                    data-full="img/storico.png"
+                    data-titolo="Storico"
+                    aria-label="Ingrandisci lo screenshot: Storico">
+              <img src="img/storico.png" alt="Schermata dello Storico" width="960" height="600" loading="lazy" decoding="async">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>📚 Storico</h3>
+              <p>Conserva le assegnazioni, permette di consultarle e di
+                 evitare coppie già sperimentate.</p>
+            </div>
+          </article>
+
+          <article class="scheda-screenshot">
+            <button type="button" class="anteprima-bottone"
+                    data-full="img/statistiche.png"
+                    data-titolo="Statistiche"
+                    aria-label="Ingrandisci lo screenshot: Statistiche">
+              <img src="img/statistiche.png" alt="Schermata delle Statistiche" width="960" height="600" loading="lazy" decoding="async">
+            </button>
+            <div class="scheda-screenshot-testo">
+              <h3>📈 Statistiche</h3>
+              <p>Aiuta a verificare equità, ricorrenze e studenti più spesso
+                 collocati in prima fila.</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <div class="lightbox-zoom-overlay" id="lightbox-overlay" role="dialog" aria-modal="true" aria-labelledby="lightbox-titolo" aria-hidden="true">
+    <div class="lightbox-zoom-wrapper">
+
+      <h2 class="sr-only" id="lightbox-titolo">Anteprima ingrandita</h2>
+
+      <button type="button" class="lightbox-zoom-tema" id="lightbox-tema" aria-label="Passa al tema scuro" aria-pressed="false" hidden>
+        <span class="lightbox-zoom-tema-traccia" aria-hidden="true">
+          <span class="lightbox-zoom-tema-sole">☀️</span>
+          <span class="lightbox-zoom-tema-luna">🌙</span>
+        </span>
+        <span class="lightbox-zoom-tema-pallino" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" class="lightbox-zoom-chiudi" id="lightbox-chiudi" aria-label="Chiudi l'immagine">
+        &times;
+      </button>
+
+      <div class="lightbox-zoom-item" id="lightbox-item">
+        <img id="lightbox-immagine" src="" alt="Immagine aperta">
+        <p class="lightbox-zoom-suggerimento" id="lightbox-suggerimento" hidden></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMPONENT:FOOTER -->
+
+</body>
+</html>
