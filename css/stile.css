@@ -1,0 +1,2556 @@
+/* =============================================================================
+   PostiPerfetti — Foglio di stile CONDIVISO da tutte le pagine del sito.
+   -----------------------------------------------------------------------------
+   Come è organizzato questo file (in ordine, dall'alto in basso):
+    0) FONT LOCALI            → carica Lora, Inter e Caveat dalla cartella fonts/.
+    1) VARIABILI              → colori, font, raggi, ombre. Si cambiano TUTTI qui.
+    2) RESET                  → azzera gli stili di default del browser.
+    3) TIPOGRAFIA             → corpo del testo, titoli, paragrafi, link.
+    4) CONTENITORE            → la "colonna" centrale in cui sta il contenuto.
+    5) INTESTAZIONE           → barra in alto con logo, menu e bottone Download.
+    6) BOTTONI                → bottone pieno (accento) e bottone con bordo.
+    7) OCCHIELLO              → la scrittina maiuscola sopra i titoli.
+    8) HERO                   → la prima fascia: testo a sinistra, riquadro-logo.
+    9) RIQUADRO LOGO          → il riquadro col logo grande nell'hero.
+    10) MICRO-CARATTERISTICHE → le note sotto il logo (index.html).
+    11) CARATTERISTICHE       → le 3 card "Distribuzione/Vincoli/Modifiche".
+    12) PASSI NUMERATI        → i 4 box numerati ("Funzionamento").
+    13) PANNELLO EVIDENZA     → il riquadro azzurro a 4 voci ("Funzionamento").
+    14) ANTEPRIMA SOFTWARE    → l'immagine dell'app ("Funzionamento").
+    15) BOX CATEGORIA         → i 4 box colorati della pagina "Guida".
+    16) LAYOUT GUIDA          → indice laterale + sezioni ("Guida").
+    17) GRIGLIA SCREENSHOT    → le 6 card della pagina "Screenshot".
+    18) APPROFONDIMENTO       → il testo lungo della pagina "Privacy".
+    19) PAGINA AUTORE         → componenti della pagina "Autore".
+    20) RIQUADRI RACCONTO     → i riquadri bianchi ("Autore").
+    21) SEZIONE SOSTEGNO      → il riquadro "Offrimi un caffè" ("Autore").
+    22) PANNELLO CTA          → la fascia finale con l'invito all'azione.
+    23) PIÈ DI PAGINA         → la riga in basso con copyright e licenza.
+    24) RESPONSIVE            → adattamento a schermi stretti (tablet/telefono).
+    25) LIGHTBOX              → il popup che ingrandisce gli screenshot.
+    26) TOCCO FINALE          → selezione testo e scrollbar personalizzate.
+    27) ACCESSIBILITÀ         → messa a fuoco tastiera e "meno animazioni".
+    28) MASCOTTE "OMINO"      → piccoli tocchi decorativi sparsi nelle pagine.
+    29) PAGINA 404            → stili della pagina di errore.
+    30) PRIVACY               → spaziature ex-inline della pagina "Privacy".
+    31) ICONE RIQUADRI EVIDENZA→ le icone dei riquadri di "Funzionamento".
+    32) SPUNTE VERDI TABELLA  → unificate alla variabile del sito.
+    33) SEZIONE REQUISITI     → i requisiti minimi, in un box (download).
+
+   NOTA per le modifiche: per cambiare un colore o un font in TUTTO il sito,
+   modifica il valore nelle VARIABILI (sezione 1). Non serve toccare altro.
+   ========================================================================== */
+
+
+/* =============================================================================
+   0) FONT LOCALI  —  Carica Lora e Inter dai file dentro fonts/. Il sito così
+   non dipende da un servizio esterno
+   -----------------------------------------------------------------------------
+   Sono entrambi FONT VARIABILI: un unico file contiene tutti i pesi (da
+   sottile a grassetto) e il browser li interpola in base al valore
+   di "font-weight" usato nel resto del CSS. Per questo basta UN file per
+   famiglia, invece di uno per ogni peso (Regular, Medium, Bold, ecc.) — più
+   semplice da mantenere e più leggero da scaricare in totale.
+
+   "font-weight: 100 900" (due numeri, non uno) dice al browser "questo file
+   copre l'intero intervallo di pesi disponibili": è la sintassi corretta
+   per i font variabili.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../fonts/lora-variabile.woff2') format('woff2');
+  font-weight: 100 900;       /* l'intero intervallo di pesi del font variabile */
+  font-style: normal;
+  font-display: swap;        /* mostra il testo con un font di riserva finché
+                                  Lora non è pronto, evitando testo invisibile */
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-variabile.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('../fonts/Caveat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* =============================================================================
+   1) VARIABILI  —  Tutti i colori e i font del sito, in un unico punto.
+   -----------------------------------------------------------------------------
+   Sono "variabili CSS": si scrivono come  --nome: valore;  e si richiamano
+   altrove con  var(--nome).  Cambiando qui il valore, cambia ovunque.
+   ========================================================================== */
+:root {
+
+  /* --- COLORI PRINCIPALI --- */
+  --sfondo:          #F4F1E9;   /* crema caldo: il fondo di tutta la pagina      */
+  --intestazione-sfondo: #ECE7DA;  /* crema un po' più scuro: sfondo della barra in alto */
+  --inchiostro:      #1E2A37;   /* blu-notte quasi nero: titoli, menu, nomi      */
+  --testo:           #54606B;   /* grigio: i paragrafi e i testi di servizio     */
+  --accento:         #1C5F70;   /* petrolio/teal del brand: bottoni, occhielli   */
+  --accento-scuro:   #164E5C;   /* versione più scura: usata al passaggio mouse  */
+  --accento-tenue:   #DEEAEA;   /* teal molto chiaro: sfondo di icone e badge    */
+
+  /* --- COLORI DEI RIQUADRI (card, chip, riquadro-logo) --- */
+  --bianco:          #FFFFFF;   /* sfondo delle card e dei chip                  */
+  --bordo:           #1E2A37;   /* bordo scuro e netto (card, chip, separatori) */
+  --bordo-tenue:     #ECE7DC;   /* bordo ancora più tenue                        */
+  --sabbia:          #E3DBC9;   /* pill sabbia di alcuni sfondi dei pulsanti     */
+  --sabbia-testo:    #665B48;   /* testo scuro sopra le pill sabbia              */
+  --grigio-smorzato: #888888;   /* grigio molto smorzato: usato per la LINEA
+  tratteggiata decorativa (non per testo, quindi il contrasto non conta) */
+  --grigio-disattivato: #626262; /* grigio del TESTO "disattivato" (i ✘ nella
+  tabella): più scuro di --grigio-smorzato per superare il contrasto minimo
+  AA (4,96:1) sul teal chiaro su cui poggia. Resta comunque un grigio. */
+  --sfondo-alternativo: #f9f9f9; /* sfondo leggermente diverso dal bianco puro   */
+  --verde-conferma:  #216A42;   /* verde di "successo" (es. messaggio "copiato") */
+  --bordo-neutro:    #dddddd;   /* bordo grigio chiaro neutro (non fa parte
+                                    della palette principale del sito)          */
+  --rosso-attenzione:#d90000;   /* rosso di stato "attenzione/chiusura"          */
+
+  /* --- FONT (caratteri tipografici) ---
+     I titoli usano un carattere "serif" (con le grazie), elegante e da libro.
+     Il testo e il menu usano un carattere "sans-serif" (senza grazie), pulito.
+     Se un font non si carica, il browser usa quelli di riserva elencati dopo.  */
+  --font-titoli:  'Lora', Georgia, 'Times New Roman', serif;
+  --font-testo:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                  Roboto, Helvetica, Arial, sans-serif;
+
+  /* --- FORME E PROFONDITÀ --- */
+  --raggio:        16px;        /* arrotondamento degli angoli di card e riquadri */
+  --raggio-piccolo: 10px;       /* arrotondamento di bottoni e chip               */
+  --ombra-card:    4px 4px 0px rgba(30, 42, 55, 0.75);  /* Ombra netta e solida stile foglio di carta */
+
+  /* --- LARGHEZZA DELLA COLONNA CENTRALE --- */
+  --larghezza-max: 1120px;      /* oltre questa larghezza il contenuto non cresce */
+}
+
+
+/* =============================================================================
+   2) RESET  —  Azzera differenze fra browser e imposta basi "pulite".
+   ========================================================================== */
+
+/* "box-sizing: border-box" fa sì che bordi e padding NON allarghino gli
+   elementi: una larghezza del 50% resta del 50% anche con bordo e padding. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Toglie i margini di default che il browser mette a titoli, paragrafi, ecc. */
+body, h1, h2, h3, p, figure {
+  margin: 0;
+}
+
+/* Le immagini non superano mai la larghezza del loro contenitore. */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* =============================================================================
+   3) TIPOGRAFIA  —  Aspetto di base di testo, titoli, paragrafi, link.
+   ========================================================================== */
+
+body {
+  font-family: var(--font-testo);          /* testo: carattere sans-serif        */
+  color: var(--testo);                     /* colore grigio dei paragrafi        */
+  /* --- EFFETTO FOGLIO A QUADRETTI --- */
+  background-image: linear-gradient(rgba(30, 42, 55, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30, 42, 55, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px; /* Grandezza del singolo quadretto */
+  background-position: center top;
+  background-color: var(--sfondo);         /* fondo crema                        */
+  line-height: 1.6;                        /* interlinea comoda da leggere       */
+  -webkit-font-smoothing: antialiased;     /* font più nitidi su schermi Apple   */
+}
+
+/* Tutti i titoli usano il carattere serif e il colore inchiostro. */
+h1, h2, h3 {
+  font-family: var(--font-titoli);
+  color: var(--inchiostro);
+  line-height: 1.15;                       /* titoli più "compatti" in altezza   */
+  font-weight: 600;
+}
+
+/* I link: colore d'accento, sottolineatura solo al passaggio del mouse. */
+a {
+  /* color: var(--accento);  */
+  text-decoration: none;
+}
+/* a:hover {
+  text-decoration: underline;
+} */
+
+/* Link dentro ai paragrafi di testo: sottolineati sempre, non solo al passaggio
+ *  del mouse, per essere riconoscibili anche senza affidarsi al colore. */
+.link-testo {
+  text-decoration: underline;
+  text-underline-offset: 3px;        /* stacca leggermente la linea dal testo */
+  text-decoration-thickness: 1px;
+}
+.link-testo:hover {
+  text-decoration-thickness: 2px;    /* leggero rinforzo al passaggio del mouse */
+}
+
+/* =============================================================================
+   4) CONTENITORE  —  La "colonna" centrale che tiene il contenuto allineato.
+   -----------------------------------------------------------------------------
+   Ogni fascia della pagina mette il suo contenuto dentro un .contenitore,
+   così tutto resta centrato e con gli stessi margini laterali.
+   ========================================================================== */
+.contenitore {
+  width: 100%;
+  max-width: var(--larghezza-max);  /* non supera la larghezza massima           */
+  margin: 0 auto;                   /* "auto" ai lati = centratura orizzontale   */
+  padding: 0 24px;                  /* spazio di respiro a sinistra e a destra   */
+}
+
+
+/* =============================================================================
+   5) INTESTAZIONE  —  Barra in alto: logo a sinistra, menu, bottone Download.
+   ========================================================================== */
+
+.intestazione {
+  padding: 18px 0;                  /* spazio sopra e sotto la barra             */
+
+  /* "position: sticky" + "top: 0" = la barra resta agganciata in cima allo
+     schermo mentre il resto della pagina scorre sotto di essa. */
+  position: sticky;
+  top: 0;
+  z-index: 50;                      /* sta SOPRA al resto del contenuto          */
+
+  /* Sfondo crema leggermente più scuro di --sfondo, per distinguere la barra
+     dal corpo della pagina anche quando ci sono sezioni bianche sotto.
+     Il colore è scritto come variabile qui sopra in VARIABILI (--intestazione-sfondo). */
+  background-color: var(--intestazione-sfondo);
+
+  /* Una linea sottile in basso, per separare nettamente la barra dal
+     contenuto quando questo scorre sotto di lei. */
+  border-bottom: 2px solid var(--bordo);
+}
+
+/* Riga interna della barra: i tre blocchi (logo / menu / download) su una riga
+   con il menu spinto verso destra grazie a "justify-content: space-between". */
+.intestazione-riga {
+  display: flex;                    /* mette i figli in fila orizzontale         */
+  align-items: center;              /* li allinea verticalmente al centro        */
+  justify-content: space-between;   /* spinge primo e ultimo ai due estremi      */
+  gap: 24px;
+}
+
+/* --- Logo (icona + nome) --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;                        /* distanza fra l'iconcina e la scritta      */
+  font-family: var(--font-testo);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--inchiostro);
+}
+.logo:hover {
+  text-decoration: none;            /* il logo non si sottolinea al passaggio     */
+}
+/* Il quadratino arrotondato che contiene l'iconcina del logo. */
+.logo-segno {
+  width: 52px;
+  height: 52px;
+  border: none;
+  background-color: transparent;
+}
+
+.logo-testo { height: 20px; width: auto; display: block; }
+
+/* --- Menu di navigazione --- */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;                         /* Gap ridotto perché i link hanno padding interno */
+}
+/* --- Voci del menu: aspetto base + preparazione per l'animazione sottolineatura --- */
+.menu a {
+  /* Aspetto base (colore, testo, spaziatura) */
+  color: var(--inchiostro);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 14px;                /* Crea lo spazio del rettangolo attorno al testo */
+  border-radius: var(--raggio-piccolo); /* Usa l'arrotondamento già definito nel sito (10px) */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Transizione morbida del colore */
+
+  /* Necessario per l'animazione della "riga fantasma" sotto il link (vedi .menu a::after
+     più sotto): position relative confina la riga assoluta dentro il link stesso. */
+  position: relative;
+  text-decoration: none; /* Rimuove la sottolineatura standard, se presente */
+}
+.menu a:hover {
+  background-color: rgba(30, 42, 55, 0.05); /* Rettangolo grigio molto tenue al passaggio */
+  color: var(--accento);            /* Il testo si accende */
+  text-decoration: none;
+}
+
+/* 2. Creiamo la riga "fantasma" sotto il link */
+.menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;           /* Partiamo con una linea invisibile */
+  height: 2px;        /* Spessore della riga */
+  bottom: 0;          /* Posizionata in fondo al link */
+  left: 0;            /* Parte da sinistra */
+  background-color: var(--accento); /* CORRETTO: la variabile "--colore-accento" non esisteva,
+     quindi il browser usava sempre il fallback #0056b3 (blu), ignorando il vero
+     colore del tema. Ora usa "--accento" (il petrolio del brand), come nel resto del sito. */
+  transition: width 0.3s ease-in-out; /* Velocità e fluidità dell'animazione */
+}
+
+/* 3. Al passaggio del mouse, la riga si allunga al 100% */
+.menu a:hover::after,
+.menu a.attivo::after { /* Ottimo per evidenziare anche la pagina corrente! */
+  width: 100%;
+}
+
+/* Voce di menu della PAGINA CORRENTE: rettangolo colorato tenue per essere ben visibile */
+.menu a.attivo {
+  background-color: var(--sabbia); /* Sfondo verdino chiaro (già nelle variabili) */
+  color: var(--accento);
+}
+
+/* --- Pulsante "hamburger" (solo mobile) e pannello menu+download --- */
+/* Di default (desktop) il pulsante è nascosto: il menu è già tutto in
+   riga, non serve nessun interruttore. */
+.menu-interruttore {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex-shrink: 0;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-piccolo);
+  background-color: var(--bianco);
+  color: var(--inchiostro);
+  cursor: pointer;
+}
+.menu-interruttore[hidden] {
+  display: none !important;
+}
+
+/* Le due iconcine (barre / X) si alternano in base allo stato del
+   pulsante: aria-expanded lo gestisce il JS a ogni click. */
+.menu-interruttore .icona-chiudi {
+  display: none;
+}
+.menu-interruttore[aria-expanded="true"] .icona-apri {
+  display: none;
+}
+.menu-interruttore[aria-expanded="true"] .icona-chiudi {
+  display: block;
+}
+
+/* Il pannello che raggruppa menu + bottone Download: su desktop resta un
+   blocco unico spinto a destra (logo a sinistra, gruppo menu+download a
+   destra) — preferito esteticamente a conti fatti, dà più "ordine"
+   percepito rispetto alla vecchia disposizione a 3 punti. Su mobile la
+   media query qui sotto lo trasforma in tendina, come già previsto. */
+.menu-contenitore {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Sotto i 768px (smartphone e tablet piccoli) il menu + il bottone Download
+   non entrano più comodamente in una sola riga accanto al logo. Invece di
+   rimpicciolire font/padding (che peggiorerebbe la leggibilità anche lì
+   dove serve), il gruppo si trasforma in un pannello a tendina, aperto
+   dal pulsante hamburger. Font e padding restano ESATTAMENTE gli stessi
+   di desktop: cambia solo la disposizione (verticale invece che in riga),
+   e il fatto che di default resti nascosto. */
+@media (max-width: 768px) {
+
+  .menu-interruttore {
+    display: flex;             /* compare solo qui sotto */
+  }
+
+  .menu-contenitore {
+    display: none;             /* nascosto finché non si apre */
+    position: absolute;        /* non spinge in basso il resto della pagina:
+                                   "galleggia" sopra, ancorato alla barra   */
+    top: calc(100% + 2px);     /* appena sotto la barra (+ 2px per il bordo) */
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 16px;
+    background-color: var(--intestazione-sfondo);
+    border-bottom: 2px solid var(--bordo);
+    box-shadow: var(--ombra-card);
+
+    /* Se le voci non entrano nell'altezza visibile (tipicamente col telefono
+     *    in ORIZZONTALE), il menu non deve sforare fuori schermo: gli diamo
+     *    un'altezza massima e lo lasciamo scorrere al suo interno. In verticale,
+     *    dove tutto ci sta, questa regola non si attiva nemmeno. */
+    max-height: calc(100vh - 100px);    /* riserva per browser datati */
+    max-height: calc(100dvh - 100px);   /* "dvh" = altezza davvero visibile su mobile */
+    overflow-y: auto;                    /* la barra di scorrimento compare SOLO se serve */
+  }
+
+  /* Il JS aggiunge questa classe quando si clicca sul pulsante hamburger. */
+  .menu-contenitore.aperto {
+    display: flex;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 4px;
+  }
+  .menu a {
+    text-align: center;
+  }
+  /* La riga "fantasma" di sottolineatura (pensata per un link orizzontale)
+     non ha senso in un menu verticale: qui la disattiviamo. */
+  .menu a::after {
+    display: none;
+  }
+
+  .menu-contenitore .btn-primario {
+    justify-content: center;
+    margin-top: 4px;
+  }
+}
+
+
+/* --- Accessibilità: link "Vai al contenuto", visibile solo quando riceve focus. */
+.salta-contenuto {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 3000;
+  padding: 10px 14px;
+  border: 2px solid var(--bordo);
+  border-radius: 8px;
+  background: var(--bianco);
+  color: var(--inchiostro);
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+.salta-contenuto:focus {
+  transform: translateY(0);
+}
+
+/* Progressive enhancement del menu: su schermi stretti il fallback è disponibile
+   già nel markup. Viene nascosto soltanto DOPO che il JavaScript ha installato
+   correttamente i gestori dell'hamburger; se lo script non parte, la navigazione
+   rimane quindi pienamente utilizzabile. */
+.menu-fallback {
+  display: none;
+}
+.menu-js-attivo .menu-fallback {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .menu-fallback {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    z-index: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 14px;
+    padding: 12px 16px;
+    background: var(--intestazione-sfondo);
+    border-bottom: 2px solid var(--bordo);
+    box-shadow: var(--ombra-card);
+  }
+  .menu-fallback a {
+    color: var(--inchiostro);
+    font-weight: 650;
+  }
+}
+
+
+/* =============================================================================
+   6) BOTTONI  —  Due tipi: pieno (.btn-primario) e con bordo (.btn-secondario).
+   ========================================================================== */
+
+/* Stile comune a tutti i bottoni. */
+.btn {
+  display: inline-flex;             /* permette icona + testo affiancati         */
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--raggio-piccolo);
+  font-family: var(--font-testo);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;    /* bordo trasparente: serve ai secondari     */
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn:hover {
+  text-decoration: none;            /* i bottoni non si sottolineano             */
+}
+
+/* Bottone PIENO: sfondo accento, testo bianco. */
+.btn-primario {
+  background-color: var(--accento);
+  color: var(--bianco);
+  border: 2px solid var(--inchiostro);
+  box-shadow: 2px 2px 0px rgba(30, 42, 55, 0.45); /* Ombra solida per il bottone */
+  transition: all 0.15s ease; /* Assicurati che ci sia una transizione veloce */
+}
+.btn-primario:hover {
+  transform: translate(-1px, -1px); /* Si solleva impercettibilmente */
+  box-shadow: 4px 4px 0px rgba(30, 42, 55, 0.35); /* L'ombra si allunga un po' */
+}
+.btn-primario:active {
+  transform: translate(3px, 3px); /* Sposta il bottone in basso e a destra... */
+  box-shadow: 0px 0px 0px transparent; /* ...mentre l'ombra scompare! */
+}
+
+/* Bottone con BORDO: sfondo chiaro, bordo sottile, testo inchiostro. */
+.btn-secondario {
+  background-color: var(--bianco);
+  color: var(--inchiostro);
+  border-color: var(--bordo);
+  border: 2px solid var(--inchiostro);
+  box-shadow: 2px 2px 0px rgba(30, 42, 55, 0.45); /* Ombra solida per il bottone */
+  transition: all 0.15s ease; /* Assicurati che ci sia una transizione veloce */
+}
+.btn-secondario:hover {
+  transform: translate(-1px, -1px); /* Si solleva impercettibilmente */
+  box-shadow: 4px 4px 0px rgba(30, 42, 55, 0.35); /* L'ombra si allunga un po' */
+}
+
+.btn-secondario:active {
+  transform: translate(3px, 3px); /* Sposta il bottone in basso e a destra... */
+  box-shadow: 0px 0px 0px transparent; /* ...mentre l'ombra scompare! */
+}
+
+
+/* =============================================================================
+   7) OCCHIELLO  —  La scritta piccola, maiuscola e spaziata sopra i titoli
+                    (es. "SOFTWARE LIBERO PER DOCENTI").
+   ========================================================================== */
+.occhiello {
+  font-family: 'Caveat', cursive; /* Il nostro nuovo font calligrafico */
+  font-size: 34px;                /* I font a mano devono essere più grandi per essere leggibili */
+  color: #D93838;                 /* Un bel colore rosso "penna del prof" */
+  text-transform: none;           /* Togliamo il "tutto maiuscolo" dell'AI per un look naturale */
+  letter-spacing: 0;
+  display: inline-block;
+  transform: rotate(-3deg);       /* Scritto leggermente storto! */
+  margin-bottom: 8px;
+}
+
+/* Variante "a pillola": l'occhiello dentro un riquadrino con bordo (usata
+   nell'hero). Si ottiene aggiungendo la classe .occhiello-pill all'occhiello. */
+.occhiello-pill {
+  padding: 7px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: 999px;             /* 999px = forma a pillola                    */
+  background-color: var(--bianco);
+}
+
+.occhiello.occhiello-pill {
+  font-family: var(--font-testo); /* Torna al font leggibile standard */
+  font-size: 12px;
+  color: var(--inchiostro);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: rotate(0deg);        /* Lo raddrizziamo */
+  /* ... lascia pure il resto delle regole esistenti per padding, border, ecc. ... */
+}
+
+/* Ripristina l'occhiello normale SOLO all'interno del pannello CTA in fondo alla Home */
+.cta-testo .occhiello {
+  font-family: var(--font-testo);   /* Torna al font standard (Inter) */
+  font-size: 12.5px;                /* La sua dimensione esatta originaria */
+  font-weight: 700;                 /* Spessore originale */
+  color: var(--accento);            /* Torna al suo colore originale (petrolio/teal) */
+  text-transform: uppercase;        /* Tutto in MAIUSCOLO */
+  letter-spacing: 0.08em;           /* Spaziatura millimetrica originale */
+  transform: rotate(0deg);          /* Lo raddrizza */
+  display: inline-flex;             /* Ripristina l'allineamento flex */
+  align-items: center;
+  gap: 8px;
+}
+
+/* =============================================================================
+   8) HERO  —  Prima fascia della Home: testo a sinistra, riquadro-logo a destra.
+   ========================================================================== */
+
+.hero {
+  padding: 40px 0 60px;             /* spazio sopra (poco) e sotto (molto)        */
+}
+
+.hero--compatta {
+  padding: 40px 0 0;             /* spazio sopra (poco) e sotto (molto)        */
+}
+
+/* Due colonne affiancate: testo (più largo) e riquadro-logo. "1.05fr 1fr" dà appena
+   più spazio alla colonna del testo. "align-items: center" le centra in verticale. */
+.hero-griglia {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* Titolone principale dell'hero. clamp(min, ideale, max) fa scalare la
+   dimensione del titolo in base alla larghezza dello schermo, senza esagerare. */
+.hero-titolo {
+  font-size: clamp(40px, 5vw, 60px);
+  margin: 22px 0 18px;
+}
+
+/* Sottotitolo dell'hero (il paragrafo sotto il titolone). */
+.hero-sottotitolo {
+  font-size: 18px;
+  max-width: 30em;    /* non troppo lungo, per leggibilità          */
+  margin: 0 0 10px;   /* spazio ridotto e controllato sotto ogni paragrafo */
+}
+
+.hero-sottotitolo:last-of-type {
+  margin-bottom: 0;   /* l'ultimo paragrafo non ha spazio vuoto dopo */
+}
+
+/* (pulizia) rimosse .hero-bottoni e .hero-note: vecchia hero, non più in uso. */
+
+
+/* =============================================================================
+   9) RIQUADRO LOGO  —  Il riquadro col logo grande nell'hero, a destra.
+   ========================================================================== */
+
+/* Il riquadro esterno che incornicia il logo. */
+.riquadro-logo {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 22px;
+}
+
+/* =============================================================================
+ *  10) MICRO-CARATTERISTICHE SOTTO IL LOGO (index.html)
+ *  ========================================================================== */
+.autore-mini-features {
+  display: grid;                        /* griglia: blocca l'ordine su 2 colonne */
+  grid-template-columns: auto auto;     /* 2 colonne -> le 4 voci diventano 2x2 */
+  justify-content: center;              /* centra la griglia sotto il logo */
+  justify-items: center;                /* ogni pillola larga quanto il suo testo */
+  align-items: center;
+  gap: 8px 10px;                        /* 8px tra le righe, 10px tra le colonne */
+  margin-top: 20px;
+  font-size: 14px;                      /* invariato: NON ingrandiamo, o salta il 2x2 */
+  line-height: 1.6;
+}
+
+/* Su telefoni molto stretti: pillole in colonna singola, così non sbordano. */
+@media (max-width: 430px) {
+  .autore-mini-features { grid-template-columns: 1fr; }
+}
+
+.mini-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                          /* icona-testo dentro la pillola */
+  background-color: var(--sabbia);   /* stesso "sabbia" dei tag Python 3 / PySide6 */
+  border: 1px solid var(--sabbia-testo);
+  color: var(--sabbia-testo);        /* testo E icona (currentColor) */
+  font-size: 12.5px;                 /* come i tag: un filo più piccolo, il 2x2 regge */
+  font-weight: 400;                  /* medio: presente ma NON grassetto */
+  letter-spacing: 0.03em;
+  padding: 4px 15px;                 /* "corpo" della pillola */
+  border-radius: 999px;
+}
+
+.arredo {
+  background-color: var(--sabbia);
+  border: 1px solid var(--sabbia-testo);
+  color: var(--sabbia-testo);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+/* =============================================================================
+   11) CARATTERISTICHE  —  Sezione centrale con le 3 card.
+   ========================================================================== */
+
+.caratteristiche {
+  padding: 40px 0 60px;
+  text-align: center;               /* occhiello, titolo e intro centrati        */
+}
+
+.caratteristiche--sollevata {
+  padding-top: 0;
+  margin-top: -32px;   /* più negativo = più su. Prova -24, -32, -48 a gusto */
+}
+
+.caratteristiche--compatta {
+  padding: 40px 0 20px;
+  text-align: center;               /* occhiello, titolo e intro centrati        */
+}
+
+/* "Solo per screen reader": nasconde un elemento alla vista ma lo lascia
+ l eggibile dagl*i screen reader. Serve per i titoli <h2> di sezione che
+ ridanno una gerarchia corretta al documento (h1 → h2 → h3) senza comparire
+ a schermo. È il pattern standard e collaudato per lo scopo. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Titolo serif della sezione. */
+.sezione-titolo {
+  font-size: clamp(28px, 3.5vw, 38px);
+  margin: 14px 0 16px;
+}
+
+/* Paragrafo introduttivo sotto il titolo della sezione. */
+.sezione-intro {
+  font-size: 17px;
+  max-width: 36em;
+  margin: 0 auto;                   /* centra il paragrafo                        */
+}
+
+/* Griglia delle 3 card: 3 colonne uguali, testo allineato a sinistra. */
+.griglia-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+/* Singola card. */
+.card {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 30px 28px;
+}
+
+/* VARIANTE card. */
+.card--evidenziata {
+  background-color: var(--accento-tenue);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 30px 28px;
+}
+
+/* Titolo serif della card. */
+.card--evidenziata h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+/* Paragrafo della card. */
+.card--evidenziata p {
+  font-size: 16px;
+}
+
+/* Quadratino arrotondato con l'icona, in cima a ogni card. */
+.card-icona {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--accento-tenue);
+  color: var(--accento);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+/* Titolo di sezione con una piccola icona SVG al posto delle emoji. */
+.titolo-sezione-icona {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.titolo-sezione-svg {
+  display: inline-flex;
+  color: var(--accento);   /* solo l'icona è colorata, il titolo resta del colore normale */
+  flex-shrink: 0;
+}
+
+/* Titolo serif della card. */
+.card h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+/* Paragrafo della card. */
+.card p {
+  font-size: 15.5px;
+}
+
+
+/* --- EFFETTO FOGLI SPARSI E ANIMAZIONE (VERSIONE DEFINITIVA) --- */
+
+/* 1. Incliniamo a SINISTRA gli elementi dispari (1°, 3°, 5°...) */
+.griglia-card .card:nth-child(odd),
+.categoria:nth-child(odd),
+.griglia-passi .passo:nth-child(odd) {
+  transform: rotate(-0.5deg);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 2. Incliniamo a DESTRA gli elementi pari (2°, 4°, 6°...) */
+.griglia-card .card:nth-child(even),
+.categoria:nth-child(even),
+.griglia-passi .passo:nth-child(even) {
+  transform: rotate(0.5deg);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. L'interazione: quando passo il mouse, il foglietto si raddrizza e si ingrandisce leggermente */
+.griglia-card .card:hover,
+.categoria:hover,
+.griglia-passi .passo:hover {
+  transform: rotate(0deg) scale(1.03);
+  z-index: 10;
+  position: relative;
+}
+
+
+/* =============================================================================
+   12) PASSI NUMERATI  —  Usati nella pagina "Funzionamento": 4 box con
+   un numero (1, 2, 3, 4) sopra un titolo e una descrizione.
+   ========================================================================== */
+
+/* La fascia che contiene il titolo+intro (sopra) e la griglia dei 4 passi
+   (sotto). Riusa .sezione-titolo e .sezione-intro già definiti altrove. */
+.passi {
+  padding: 10px 0 60px;
+  text-align: center;
+}
+
+/* Griglia dei 4 passi: 4 colonne uguali, testo allineato a sinistra dentro
+   ogni box (anche se il titolo sopra la griglia resta centrato). */
+.griglia-passi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+/* Singolo box-passo: stessa "famiglia visiva" delle card (bianco, bordo,
+   ombra leggera, angoli arrotondati), ma con padding più compatto perché
+   il contenuto è più breve. */
+.passo {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 26px 24px;
+}
+
+/* Il numero (01/02/03/04) sopra il titolo: piccolo, colore d'accento,
+   spaziato come un occhiello ma senza maiuscole forzate (i numeri restano
+   numeri). */
+.passo-numero {
+  font-family: var(--font-testo);
+  font-weight: 700;              /* Un pizzico più spesso per compensare il colore chiaro */
+  font-size: 30px;               /* Leggermente più grande, stile numerazione di un raccoglitore */
+  color: rgba(46, 139, 87, 0.33); /* Verde-conferma sfumato (stesso velo, ma verde). Il numero 0.33 regola quanto è "pieno": più basso = più tenue */
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Titolo del passo (più piccolo dei titoli delle card, box più compatti). */
+.passo h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Descrizione del passo. */
+.passo p {
+  font-size: 14.5px;
+}
+
+.didascalia-anteprima {
+  font-size: 17px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 28px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* NUOVO: centra il gruppo omino+testo come
+     blocco unico, invece di lasciare che il testo (flex-grow) si mangi
+     tutto lo spazio residuo — è quello che creava i due margini ampi e
+     "sbilanciati" ai lati */
+  gap: 46px;
+
+  /* LE MODIFICHE: */
+  background-color: rgba(255, 255, 255, 0.85); /* Un po' più opaco per staccare dal fondo */
+  border: 2px solid var(--accento);             /* Riga continua ma del colore petrolio/teal del brand */
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* L'effetto "fatto a mano" */
+  box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.03); /* Un'ombra leggerissima che lo solleva dal foglio */
+}
+
+/* (pulizia) rimossa .didascalia-icona: non più usata. */
+
+.didascalia-testo {
+  margin: 0;
+  /* RIMOSSO "flex-grow: 1": era la causa del problema — il testo si
+     espandeva a riempire tutto lo spazio residuo, per poi centrarsi DENTRO
+     quello spazio enorme. Ora prende solo la larghezza che gli serve, e
+     l'intero gruppo [omino + testo] viene centrato insieme da
+     "justify-content: center" qui sopra, con lo spazio residuo che si
+     distribuisce in modo simmetrico ai due lati esterni, come richiesto:
+     [bordo][margine ampio][omino][margine stretto][testo][margine ampio][bordo] */
+}
+
+/* =============================================================================
+   13) PANNELLO EVIDENZA  —  Il riquadro colorato "Modalità mensile o
+   annuale" nella pagina "Funzionamento": sfondo teal chiaro, testo a
+   sinistra, bottone a destra. A differenza del pannello CTA (sezione 11)
+   non ha bordo né occhiello: è un semplice blocco di colore con testo sopra.
+   ========================================================================== */
+
+.evidenza {
+  padding: 0 0 80px;
+}
+
+/* Il pannello diventa una griglia nativa a 3 colonne */
+.evidenza-pannello {
+  background-color: var(--accento-tenue);
+  border-radius: var(--raggio);
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto; /* due colonne per i testi (2×2), una per il bottone */
+  grid-template-rows: auto auto;        /* due righe esplicite: così il bottone (grid-row 1/-1) le copre entrambe e resta centrato */
+  gap: 28px 40px;                       /* 28px tra le righe, 40px tra le colonne */
+  align-items: start;
+  border: 2px solid var(--inchiostro); /* bordo scuro netto in stile "scheda" */
+  box-shadow: var(--ombra-card);       /* ombra solida coordinata con le altre card */
+}
+
+/* Forziamo i blocchi di testo a non inventarsi strane larghezze */
+.evidenza-testo {
+  font-size: 17px;
+  width: 100%;
+}
+
+/* Distanzia il testo descrittivo dal titoletto sopra di esso */
+.evidenza-testo h3 {
+  margin-bottom: 8px; /* Puoi aumentare a 10px o 12px se li vuoi ancora più staccati */
+}
+
+/* Il bottone si ancora alla 3ª colonna e si estende su TUTTE le righe dei
+ *  testi ("1 / -1" = dalla prima all'ultima riga, qualunque sia il loro numero):
+ *  così resta centrato verticalmente rispetto all'intero blocco dei 4 riquadri. */
+.evidenza-pannello .btn-primario {
+  grid-column: 3;
+  grid-row: 1 / -1;
+  align-self: center;    /* centrato in verticale rispetto all'altezza dei testi */
+  justify-self: end;     /* spinto contro il margine destro del pannello */
+  white-space: nowrap;   /* il testo del bottone non va a capo */
+}
+
+/* Le regole responsive di ".evidenza-pannello" (992px e 768px) sono state
+   spostate nella Sezione 13 — RESPONSIVE, insieme a tutte le altre media query
+   del sito, per rispettare l'indice dichiarato in cima al file. */
+
+/* =============================================================================
+ 14) ANTEPRIMA SOFTWARE  —  Immagine dell'app nella pagina "Funzionamento".
+ ========================================================================== */
+
+/* --- Sezione Anteprima Software --- */
+.intro-come-funziona {
+  text-align: center; /* Centra il titolo, il sottotitolo e l'immagine */
+  padding: 48px 0 60px;
+}
+
+/* (pulizia) rimossa ".intro-come-funziona .sottotitolo": non più usata. */
+
+/* La Cornicetta / Scatola esterna */
+.anteprima-software-box {
+  max-width: 760px;          /* Larghezza massima della foto sul sito */
+  margin: 0 auto;            /* Centra il box nella pagina */
+
+  /* Dice al browser di gestire i cambi di dimensione in modo fluido e non a scatti */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* L'immagine vera e propria */
+.anteprima-img {
+  display: block;
+  width: 100%;               /* Si adatta alla larghezza del box */
+  height: auto;              /* Mantiene le proporzioni originali senza schiacciarsi */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transizione fluida per lo zoom */
+}
+
+/* L'EFFETTO HOVER (Passaggio del mouse) */
+/* NOTA: questa media query resta qui vicino al componente a cui appartiene,
+   invece di essere spostata in Sezione 13, perché è concettualmente diversa
+   dalle altre: non dipende dalla LARGHEZZA dello schermo (tablet/telefono),
+   ma dal TIPO di dispositivo di input (se ha un mouse oppure no). */
+@media (hover: hover) {
+  /* Questo controllo speciale dice al browser: attiva l'effetto SOLO se il dispositivo ha un mouse (PC/Mac) */
+
+  .anteprima-software-box:hover .anteprima-img {
+    /* L'immagine dentro si ingrandisce leggermente del 3% (effetto zoom immersivo) */
+    transform: scale(1.05);
+  }
+}
+
+
+/* =============================================================================
+   15) BOX CATEGORIA  —  Usati nella pagina "Guida": i 4 box colorati
+   in alto (Prima volta / Vincoli / Risultati / Problemi), una panoramica
+   rapida prima del dettaglio nelle sezioni sottostanti.
+   ========================================================================== */
+
+/* Griglia dei 4 box: stessa logica dei 4 passi numerati (sezione 12),
+   ma qui sono box colorati invece che bianchi. */
+.griglia-categorie {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+/* Singolo box: sfondo teal chiaro (lo stesso --accento-tenue usato per il
+   pannello "Modalità mensile o annuale"), senza bordo né ombra: è pensato
+   come anteprima rapida, non come scheda principale. */
+.categoria {
+  background-color: var(--accento-tenue);
+  border-radius: var(--raggio);
+  padding: 22px 20px;
+  border: 2px solid var(--inchiostro); /* Il bordo netto */
+  box-shadow: var(--ombra-card);       /* L'ombra al 75% */
+}
+.categoria h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.categoria p {
+  font-size: 14px;
+}
+
+
+/* =============================================================================
+   16) LAYOUT GUIDA  —  La parte sotto i 4 box: a sinistra l'indice (sotto-menu numerato e cliccabile), a destra le 6 sezioni di
+   contenuto vere e proprie.
+   ========================================================================== */
+
+.guida-corpo {
+  padding: 50px 0 80px;
+}
+
+/* Griglia a 2 colonne: l'indice ha una larghezza fissa (260px), le
+   sezioni di contenuto occupano tutto lo spazio restante ("1fr").
+   "align-items: start" evita che il sotto-menu si "stiri" in altezza quanto
+   la colonna delle sezioni, che è molto più lunga. */
+.guida-griglia {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* --- Il riquadro del sotto-menu --- */
+.guida-indice {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 24px 22px;
+
+  /* "position: sticky" + "top" fa sì che il sotto-menu resti visibile mentre
+     si scorre lungo le 6 sezioni, fermandosi appena sotto l'intestazione
+     fissa (che misura circa 80px). Così l'indice è sempre a portata di clic. */
+  position: sticky;
+  top: calc(var(--altezza-intestazione, 80px) + 16px);
+}
+
+/* L'etichetta "SOTTO-MENU" sopra l'elenco: stesso stile dell'occhiello, ma
+   senza la "pillola" di sfondo. */
+.guida-indice-etichetta {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accento);
+}
+
+/* L'elenco numerato delle 6 voci. "list-style: none" toglie i pallini di
+   default delle liste HTML, perché il numero lo disegniamo noi a mano
+   (così possiamo colorarlo diversamente dal testo del link). */
+.guida-indice ol {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                         /* poco spazio: i bottoni hanno già il loro padding */
+}
+
+/* Ogni voce è un link cliccabile, con il numero a sinistra e il testo a
+   destra, affiancati ("display: flex"). */
+.guida-indice a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--inchiostro);
+  transition: background-color 0.18s ease, color 0.18s ease,
+              border-color 0.18s ease, box-shadow 0.18s ease,
+              transform 0.18s ease;
+}
+.guida-indice a:hover {
+  background-color: var(--accento-tenue);  /* leggero sfondo al passaggio   */
+  color: var(--accento);
+  text-decoration: none;
+}
+
+/* Voce dell'indice corrispondente alla sezione letta o appena selezionata. */
+.guida-indice a.attivo {
+  color: var(--bianco);
+  background-color: var(--accento);
+  border-color: var(--inchiostro);
+  box-shadow: 2px 2px 0 rgba(30, 42, 55, 0.35);
+  transform: translateX(2px);
+}
+
+.guida-indice a.attivo:hover {
+  color: var(--bianco);
+  background-color: var(--accento-scuro);
+}
+
+.guida-indice a.attivo .numero {
+  color: var(--accento);
+  background-color: var(--bianco);
+}
+
+
+/* Il numero della voce (1, 2, 3...): colore d'accento, larghezza fissa
+   così tutti i testi a fianco partono allineati alla stessa colonna. */
+.guida-indice .numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65em;
+  height: 1.65em;
+  border-radius: 50%;
+  color: var(--accento);
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+/* --- Le 6 sezioni di contenuto, una sotto l'altra --- */
+.guida-sezioni {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Le sezioni riusano lo stile ".card" già definito altrove (sfondo bianco,
+   bordo, ombra). Qui aggiungiamo solo lo "scroll-margin-top": serve perché
+   l'intestazione resta fissa in alto (sticky); senza questa proprietà, un
+   clic sul sotto-menu porterebbe la sezione ESATTAMENTE in cima allo
+   schermo, nascondendola per metà sotto la barra. Con questo margine
+   "virtuale" il browser si ferma un po' più in basso, lasciando la sezione
+   visibile sotto la barra. */
+.guida-sezioni .card {
+  scroll-margin-top: calc(var(--altezza-intestazione, 80px) + 16px);
+}
+.guida-sezioni .card h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+.guida-sezioni .card p {
+  font-size: 15.5px;
+}
+
+/* --- Riquadro conclusivo: protezioni e controlli del programma --- */
+
+.guida-sicurezza {
+  grid-column: 1 / -1;
+  margin-top: 24px;
+}
+
+.guida-sicurezza h3 {
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.guida-sicurezza-intro {
+  max-width: 58em;
+  margin-bottom: 26px;
+  font-size: 16.5px;
+}
+
+.guida-sicurezza-griglia {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 36px;
+}
+
+.guida-sicurezza-voce h4 {
+  margin: 0 0 7px;
+  font-family: var(--font-titoli);
+  color: var(--inchiostro);
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.guida-sicurezza-voce p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .guida-sicurezza-griglia {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* =============================================================================
+   17) GRIGLIA SCREENSHOT  —  Le 6 card della pagina "Screenshot":
+   anteprima cliccabile in alto, titolo e descrizione sotto.
+   ========================================================================== */
+
+/* Griglia a 2 colonne (come nello screenshot originale del sito Framer). */
+.griglia-screenshot {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 44px 24px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+/* Singola card: stesso stile delle altre card del sito (bianco, bordo,
+   ombra), ma senza padding uniforme: l'anteprima deve toccare i bordi della
+   card su tre lati, mentre testo e descrizione hanno il loro spazio sotto. */
+.scheda-screenshot {
+  background-color: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  overflow: hidden;            /* l'immagine non sporge dagli angoli arrotondati */
+}
+
+/* Variante "evidenziata" per l'ultima card (Tema chiaro e scuro nello
+   screenshot originale ha uno sfondo leggermente colorato). */
+.scheda-screenshot.evidenziata {
+  background-color: var(--accento-tenue);
+  box-shadow: var(--ombra-card);       /* La tua ombra al 75% */
+}
+
+/* Il BOTTONE che racchiude l'anteprima. Uso un <button> (non un'immagine
+   semplice) perché deve essere cliccabile ed accessibile da tastiera: i
+   bottoni rispondono di natura sia al clic che al tasto Invio/Spazio. */
+.anteprima-bottone {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;             /* il cursore "lente" suggerisce che si può ingrandire */
+}
+.anteprima-bottone img {
+  width: 100%;
+  height: auto;              /* usa il rapporto intrinseco: gli attributi width/height evitano CLS senza deformare */
+  display: block;
+  transition: opacity .15s ease;
+}
+/* Una leggera trasparenza al passaggio del mouse, per confermare che
+   l'immagine è interattiva. */
+.anteprima-bottone:hover img {
+  opacity: 0.88;
+}
+
+/* Testo sotto l'anteprima (titolo + descrizione). */
+.scheda-screenshot-testo {
+  padding: 22px 24px 26px;
+}
+.scheda-screenshot-testo h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.scheda-screenshot-testo p {
+  font-size: 14.5px;
+}
+
+
+/* =============================================================================
+   18) APPROFONDIMENTO  —  Il blocco di testo lungo della pagina "Privacy".
+   ========================================================================== */
+
+/* Il contenitore dei due bottoni */
+.gruppo-bottoni {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;       /* Su schermi stretti i bottoni vanno uno sotto l'altro */
+  margin-top: 80px;
+}
+
+/* Animazione di entrata morbida */
+@keyframes comparsaMorbida {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stato base della sezione: nascosta dal flusso */
+.approfondimento-sezione {
+  display: none;
+  margin-top: 40px;
+}
+
+/* Stato attivo: viene mostrata al clic sul bottone */
+.approfondimento-sezione.visibile {
+  display: block;
+  animation: comparsaMorbida 0.4s ease forwards;
+}
+
+/* Il riquadro bianco in stile "card" che contiene il testo lungo */
+.approfondimento-contenuto {
+  background-color: var(--bianco);
+  border-radius: var(--raggio);
+  padding: 40px 50px;
+  box-shadow: var(--ombra-card);
+  max-width: 100%;       /* Più largo di una card standard per favorire la lettura */
+  margin: 0 auto;         /* Lo centra nello schermo */
+  text-align: left;
+}
+
+/* Stile dei testi all'interno del riquadro */
+.approfondimento-contenuto h2 {
+  font-family: var(--font-titoli);
+  font-size: 26px;
+  color: var(--inchiostro);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--bordo-tenue);
+  padding-bottom: 16px;
+}
+
+.approfondimento-contenuto h3 {
+  font-size: 18px;
+  color: var(--accento);
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.approfondimento-contenuto p {
+  font-size: 18px;
+  color: var(--testo);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* (pulizia) rimossa ".approfondimento-contenuto p.intro-testo": non più usata. */
+
+/* Paragrafo "in evidenza": sostituisce l'emoji 🔹 con un bordo laterale colorato. */
+.nota-evidenziata {
+  border-left: 3px solid var(--verde-conferma);  /* verde = "buona notizia": le conclusioni positive */
+  padding: 2px 0 2px 16px;
+  margin: 18px 0;
+}
+
+/* Riquadro che contiene la tabella comparativa, così non "galleggia"
+ nella pagina: sfo*ndo bianco, bordo e ombra come le altre schede. */
+.tabella-box {
+  background-color: var(--accento-tenue);
+  border: 2px solid var(--inchiostro);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 4px 24px 8px;   /* top ridotto: lo spazio sopra la tabella ora lo dà .tabella-scroll */
+  position: relative;
+  margin-top: 16px;            /* spaziature prima scritte inline in privacy.html */
+  margin-bottom: 32px;
+}
+
+/* Stile per la tabella comparativa finale */
+.tabella-confronto {
+  font-size: 15.5px;   /* Prima era 18px: più grande del testo delle card
+     (.card p, anch'esso 15.5px) nello stesso tipo di contenuto — risultava
+     "fuori scala" rispetto al resto della pagina. Ora coincide. */
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+.tabella-confronto th,
+.tabella-confronto td {
+  padding: 14px 16px;
+  text-align: center;   /* intestazioni e celle-dato centrate nella colonna */
+  border-bottom: 1px solid var(--bordo-tenue);
+}
+/* La prima colonna (etichette "Sicurezza/Algoritmo/Costo") resta a sinistra */
+.tabella-confronto tr > :first-child {
+  text-align: center;
+  background-color:transparent;
+  width: 120px;   /* larghezza fissa della prima colonna: dà un riferimento
+  stabile e preciso per centrarci sopra l'omino (senza dipendere dal font) */
+}
+.tabella-confronto thead th {
+  background-color: var(--bianco);
+  font-weight: 600;
+  color: var(--inchiostro);
+  border-radius: 36px 36px 0 0;
+}
+.tabella-confronto tbody th {
+  font-weight: 700;
+  color: var(--testo);
+  background: transparent;
+}
+.tabella-confronto tbody tr:last-child > * {
+  border-bottom: none;
+}
+
+/* Opzionale: evidenzia leggermente la riga quando ci passi sopra col mouse */
+.tabella-confronto tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+.testo-disattivato {
+  color: var(--grigio-disattivato); /* colore dedicato e accessibile (vedi :root).
+  Prima era --grigio-smorzato (#888), che però non raggiungeva il contrasto
+  minimo AA su questo sfondo teal. La linea tratteggiata decorativa altrove
+  continua a usare --grigio-smorzato, quindi resta invariata. */
+    font-style: italic; /* Opzionale, per staccare ancora di più */
+}
+
+/* =============================================================================
+ 19) PAGINA AUTORE  —  Componenti usati solo nella pagina "Autore":
+ il riquadro per il logo grande, la riga "firma" (avatar + nome + scuola),
+ le etichette dello stack tecnico e il corpo del racconto. Il riquadro
+ bianco con ombra (".riquadro-logo") e le pillole sabbia (".arredo") sono RIUSATI
+ da qui, non ridefiniti: vedi rispettivamente le sezioni 9 e 11.
+ ========================================================================== */
+
+/* Il logo grande, dentro ".riquadro-logo" (già pronto: sfondo bianco, bordo,
+ ombra, angoli arrotondati). Da solo ".riquadro-logo" non è pensato per stare
+ centrato a piena pagina (nell'hero vive dentro una colonna): qui lo
+ vincoliamo in larghezza e lo centriamo. */
+.autore-logo {
+  max-width: 420px;
+  margin: 40px auto 0;
+}
+
+/* Riga "firma": avatar a sinistra, nome e scuola a destra. Questo blocco
+ vive dentro ".caratteristiche", che centra tutto il testo: qui lo
+ riportiamo a sinistra, più leggibile per un blocco "biglietto da
+ visita" che per un titolo. */
+.autore-firma {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 42em;
+  margin: 44px auto 0;
+  text-align: left;
+}
+
+/* L'immagine avatar: cerchio con bordo sottile, stessa idea del
+ "logo-segno" dell'intestazione ma più grande. È una foto vera (non
+ un'icona): "object-fit: cover" riempie il cerchio senza deformarla. */
+.autore-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1px solid var(--bordo);
+  object-fit: cover;
+  flex-shrink: 0;             /* non si restringe se il testo accanto è lungo */
+}
+
+/* Blocco testuale a fianco dell'avatar: nome sopra, scuola/città sotto. */
+.autore-firma-testo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.autore-nome {
+  font-family: var(--font-titoli);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--inchiostro);
+}
+.autore-scuola {
+  font-size: 14.5px;
+  color: var(--testo);
+}
+
+/* Riga delle etichette dello stack tecnico: riusa ".arredo" (sezione 9)
+ per ogni singola pillola. Qui definiamo solo il contenitore, allineato a
+ sinistra (le pillole dell'hero sono invece centrate). */
+.autore-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 42em;
+  margin: 18px auto 0;
+  text-align: left;
+}
+
+.copiato{
+  opacity:0;
+  color:var(--verde-conferma); /* Prima scritto a mano "#2e8b57": è un verde di
+     "successo", diverso dalla palette principale, ora ha una sua variabile dedicata. */
+  font-weight:600;
+  margin-top:12px;
+  transition:opacity .3s;
+}
+
+.copiato.visibile{
+  opacity:1;
+}
+
+
+/* =============================================================================
+ *  20) RIQUADRI RACCONTO  —  I riquadri bianchi della pagina "Autore".
+ *  ========================================================================== */
+.autore-card {
+  max-width: 90%;         /* Dimensione ideale per non disperdere le righe su schermi grandi */
+  margin: 0 auto 24px auto; /* Centra il riquadro nella pagina e crea spazio sotto */
+  text-align: left;         /* Mantiene il testo allineato a sinistra all'interno del box */
+}
+
+/* Crea spazio extra sopra il primo riquadro per staccarlo dalle etichette dello stack tecnico */
+.autore-card:first-of-type {
+  margin-top: 45px;         /* Aggiunge 45px di respiro sopra la prima card. Alza a 50px o 60px se lo vuoi ancora più giù */
+}
+
+/* Rimuove il margine inferiore dall'ultimo riquadro per evitare spazi vuoti eccessivi */
+.autore-card:last-child {
+  margin-bottom: 0;
+}
+
+/* (pulizia) rimosso .autore-corpo (+ h2/p/p:last-child): vecchio contenitore. */
+
+/* Liste puntate dentro le card della pagina Autore: sostituiscono &middot; e <br>
+ *  con markup semantico e respiro reale tra un punto e l'altro. */
+.lista-autore {
+  font-size: 17px;
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;              /* qui regoli lo spazio "che manca" tra i punti */
+}
+.lista-autore li {
+  line-height: 1.65;
+}
+.lista-autore li::marker {
+  color: var(--accento);  /* il pallino prende il colore del sito, non resta grigio */
+}
+
+/* =============================================================================
+   21) SEZIONE SOSTEGNO  —  Il riquadro "Offrimi un caffè" (autore.html).
+   ========================================================================== */
+.sostegno {
+  padding: 60px 0;
+  background-color: var(--sfondo-alternativo); /* CORRETTO: "--colore-sfondo-alternativo" non
+     esisteva; il fallback #f9f9f9 funzionava già visivamente, ma era scollegato dal
+     tema. Ora è una vera variabile nuova (stesso colore di prima), aggiunta in :root. */
+  border: 2px solid var(--bordo);
+  text-align: center;
+}
+
+.sostegno-scatola {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.sostegno-scatola h3 {
+  font-family: var(--font-titoli); /* Lora */
+  font-size: 28px;
+  color: var(--inchiostro); /* CORRETTO: "--colore-testo-scuro" non esisteva e non aveva
+     fallback, quindi qui non veniva applicato nessun colore custom. Ora usa
+     "--inchiostro", il colore scuro standard già usato per i titoli nel resto del sito. */
+  margin-bottom: 20px;
+}
+
+.sostegno-scatola p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--testo); /* CORRETTO: "--colore-testo-chiaro" non esisteva e non aveva
+     fallback, quindi qui non veniva applicato nessun colore custom. Ora usa "--testo",
+     il grigio standard già usato per i paragrafi in tutto il sito. */
+  margin-bottom: 16px;
+}
+
+.sostegno-bottone {
+  margin-top: 30px;
+}
+
+
+ /* =============================================================================
+  22) PANNELLO CTA  —  Fascia finale "Uno strumento che la scuola può…".
+  -----------------------------------------------------------------------------
+  È un grande riquadro: a sinistra occhiello+titolo+testo, a destra
+  i due bottoni impilati.
+  ========================================================================== */
+
+.cta {
+  padding: 0 0 80px;
+}
+
+/* Il riquadro bianco esterno. */
+.cta-pannello {
+  background-color: var(--accento-tenue);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra-card);
+  padding: 48px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;   /* serve da ancora per l'omino "appeso" nella pagina Download */
+}
+
+.cta-pannello--come-card {
+  max-width: 90%;
+  margin-inline: auto;   /* centrato, esattamente come le .autore-card */
+}
+
+/* Colonna sinistra del pannello (testi). */
+.cta-testo {
+  font-size: 18px;
+  max-width: 40em;
+}
+.cta-testo .sezione-titolo {
+  font-size: 26px;
+  text-align: left;                 /* qui il titolo va a sinistra, non centrato */
+  margin: 12px 0 14px;
+}
+
+/* Riga "meta" della versione nel download: piccola e discreta, subito sotto
+ *  il titolo, per far vedere a colpo d'occhio versione e data dell'ultimo
+ *  aggiornamento (rassicura chi torna che il progetto è vivo). */
+.download-versione {
+  font-size: 14px;
+  color: var(--testo);
+  margin: -6px 0 16px;
+}
+
+/* Separatore decorativo tra due paragrafi lunghi della colonna testo: una
+   linea sottile spezzata per evitare che un blocco di testo troppo lungo
+   diventi un "muro" visivo. È puramente decorativo (aria-hidden="true"
+   nell'HTML): non altera la lettura per chi usa uno screen reader. */
+.cta-separatore {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 16px 0;
+}
+
+/* Le due lineette che affiancano l'icona: si allungano/accorciano da sole
+   grazie a "flex: 1", adattandosi a qualunque larghezza della colonna. */
+.cta-separatore-linea {
+  flex: 1;
+  height: 1px;
+  /* "border-style: dashed" non permette di scegliere lunghezza/spaziatura dei
+     trattini (li decide il browser). Con un gradiente a ripetizione invece
+     disegniamo noi il pattern: 6px di colore, poi 6px di vuoto, e così via
+     lungo tutta la linea — dando pieno controllo su quanto è "diradato". */
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--grigio-smorzato) 0,
+    var(--grigio-smorzato) 8px,      /* lunghezza di ogni trattino */
+    transparent 6px,
+    transparent 16px             /* lunghezza dello spazio vuoto dopo */
+  );
+}
+
+/* Colonna destra del pannello: i due bottoni, uno sopra l'altro. */
+.cta-bottoni {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  flex-shrink: 0;                   /* non si stringe: tiene la sua larghezza     */
+}
+
+
+/* =============================================================================
+   22bis) NOTA PRIVACY  —  Fascia sottile sopra al footer: "zero cookie, zero
+   tracciamento". Nessun JS, nessun pulsante di chiusura: è un fatto, non una
+   richiesta di consenso, quindi non va trattata come i banner tradizionali.
+   ========================================================================== */
+
+.nota-privacy {
+  background-color: var(--accento-tenue);
+  border-top: 1px solid var(--bordo-tenue);
+  padding: 10px 0;
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.35s ease, max-height 0.35s ease, padding 0.35s ease;
+  overflow: hidden;
+}
+/* Stato dopo la chiusura (classe aggiunta dal JS al click di "OK"):
+   si comprime a zero invece di sparire di scatto, per un distacco più
+   morbido dal resto della pagina. */
+.nota-privacy.nascosta {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-color: transparent;
+}
+.nota-privacy-riga {
+  font-size: 13px;
+  color: var(--accento-scuro);
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.nota-privacy-riga strong {
+  color: var(--accento-scuro);
+}
+/* Il pulsante "OK": piccolo, in tinta, resta minimale. */
+.nota-privacy-chiudi {
+  flex-shrink: 0;
+  padding: 4px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--bianco);
+  background-color: var(--accento);
+  border: 1px solid var(--inchiostro);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+.nota-privacy-chiudi:hover {
+  background-color: var(--accento-scuro);
+  transform: translateY(-1px);
+}
+@media (max-width: 640px) {
+  .nota-privacy-riga {
+    font-size: 12.5px;
+    padding: 0 12px;
+  }
+}
+
+
+/* =============================================================================
+   23) PIÈ DI PAGINA  —  Riga in basso con copyright (sx) e licenza (dx).
+   ========================================================================== */
+
+.pie {
+  border-top: 1px solid var(--bordo);   /* linea sottile di separazione           */
+  padding: 26px 0;
+  background-color: var(--intestazione-sfondo); /* Sfondo blu-notte scuro */
+  color: var(--bianco);                /* Forza il testo a diventare bianco per leggersi */
+  position: relative;
+  z-index: 2;
+}
+.pie-riga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--testo);
+}
+.pie-riga strong {
+  color: var(--inchiostro);
+}
+
+.pie-sinistra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pie-brand {
+  height: 36px;      /* regola a gusto: 28-40 */
+  width: auto;
+  display: block;
+  flex-shrink: 0;    /* non si schiaccia su schermi stretti */
+}
+
+/* =============================================================================
+   24) RESPONSIVE  —  Adattamento agli schermi più stretti.
+   -----------------------------------------------------------------------------
+   Le "@media (max-width: …)" applicano regole SOLO sotto una certa larghezza.
+   Si parte dal più largo verso il più stretto.
+   ========================================================================== */
+
+/* TABLET GRANDE (sotto 992px): allarga leggermente lo spazio tra le voci del
+   pannello "Modalità mensile o annuale" (come-funziona.html).
+   NOTA: questa soglia (992px) resta distinta da quella usata poco sotto per lo
+   stesso componente a 900px: sono due adattamenti diversi per lo stesso
+   pannello, e unificarli in un'unica soglia cambierebbe la resa visiva per
+   chi ha uno schermo largo tra 900 e 992px — non è stato unificato per
+   evitare questo rischio, senza poterlo verificare dal vivo. */
+@media (max-width: 992px) {
+  .evidenza-pannello {
+    gap: 24px 32px;
+  }
+}
+
+/* TABLET e schermi medi (sotto 900px): hero e card passano a una sola colonna. */
+@media (max-width: 900px) {
+
+  /* L'hero non è più affiancato: prima il testo, sotto il riquadro-logo. */
+  .hero-griglia {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Le 3 card si dispongono una sotto l'altra. */
+  .griglia-card {
+    grid-template-columns: 1fr;
+  }
+
+  /* I 4 passi numerati passano da 4 a 2 colonne: restano leggibili senza
+     diventare uno sotto l'altro già su tablet. */
+  .griglia-passi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* I 4 box-categoria della pagina Guida: stessa logica, 4 → 2 colonne. */
+  .griglia-categorie {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Il layout della Guida perde le 2 colonne: il sotto-menu va sopra,
+     a piena larghezza, seguito dalle sezioni. Niente più "sticky" per il
+     sotto-menu: su schermi stretti restare incollato in alto mentre si
+     scorre toglierebbe spazio utile al contenuto. */
+  .guida-griglia {
+    grid-template-columns: 1fr;
+  }
+  .guida-indice {
+    position: static;
+  }
+
+  /* Il pannello finale impila testo e bottoni. */
+  .cta-pannello {
+    flex-direction: column;
+    align-items: center;   /* IMPILATO (sotto i 900px): centra testo e blocco
+    bottoni, invece di spingerli a sinistra. Il testo resta comunque allineato
+    a sinistra AL SUO INTERNO, cambia solo la posizione del blocco. */
+  }
+}
+
+/* TABLET/SMARTPHONE (sotto 768px): il pannello "Modalità mensile o annuale"
+   passa a una colonna singola, e la sezione "Funzionamento" stringe i margini.
+   (Unificate qui due regole per componenti diversi che usavano la stessa
+   soglia di 768px in due punti separati del file: .evidenza-pannello e
+   .intro-come-funziona.) */
+@media (max-width: 768px) {
+  .evidenza-pannello {
+    grid-template-columns: 1fr; /* Diventa una colonna singola */
+    gap: 24px;
+  }
+
+  .evidenza-pannello .btn-primario {
+    grid-column: auto;          /* Reset delle posizioni speciali */
+    grid-row: auto;
+    justify-self: center;       /* Bottone centrato in fondo su mobile */
+    margin-top: 8px;
+  }
+
+  .intro-come-funziona {
+    padding: 20px 16px;
+  }
+}
+
+/* TELEFONO (sotto 600px): menu e piè di pagina vanno a capo e si centrano. */
+@media (max-width: 600px) {
+
+  /* I 4 passi numerati passano a 1 sola colonna: a questa larghezza anche
+     2 colonne risulterebbero troppo strette. */
+  .griglia-passi {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stessa cosa per i 4 box-categoria della pagina Guida. */
+  .griglia-categorie {
+    grid-template-columns: 1fr;
+  }
+
+  /* La griglia delle 6 schermate passa da 2 a 1 colonna: a questa larghezza
+     2 colonne renderebbero le anteprime troppo piccole per essere utili. */
+  .griglia-screenshot {
+    grid-template-columns: 1fr;
+  }
+
+  /* La barra in alto: logo e hamburger restano affiancati; il pannello
+     menu+download (vedi sotto) si apre/chiude sotto di loro, senza
+     spingere in basso il resto della pagina (è "position: absolute"). */
+  .intestazione-riga {
+    position: relative;
+  }
+
+  /* Il piè di pagina impila le due righe e le centra. */
+  .pie-riga {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Il bottone "X" del lightbox si rimpicciolisce e si avvicina ai bordi
+     dell'immagine (era una media query 600px separata, vicino a
+     .lightbox-zoom-chiudi; unificata qui perché stessa soglia, stesso
+     scopo "adattamento al telefono"). */
+  .lightbox-zoom-chiudi {
+    top: -10px; right: -10px;
+    width: 32px; height: 32px; font-size: 18px;
+  }
+
+  /* Stessa riduzione applicata alla pillola tema, per restare coerente
+     con la X sul lato opposto dell'immagine. */
+  .lightbox-zoom-tema {
+    top: -10px; left: -10px;
+    width: 50px; height: 26px;
+  }
+  .lightbox-zoom-tema-traccia {
+    font-size: 11px;
+  }
+  .lightbox-zoom-tema-pallino {
+    width: 18px; height: 18px;
+  }
+  .lightbox-zoom-tema.tema-scuro .lightbox-zoom-tema-pallino {
+    left: 27px;
+  }
+
+  /* Pagina Autore: adattamento specifico agli smartphone. */
+  .autore-logo {
+    width: 100%;
+    max-width: none;
+    margin-top: 30px;
+  }
+
+  .autore-firma {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .autore-firma-testo {
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+  }
+
+  .autore-nome,
+  .autore-scuola {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .autore-stack {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .autore-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+
+  .autore-card:first-of-type {
+    margin-top: 34px;
+  }
+
+  .lista-autore li,
+  .sostegno-scatola p {
+    overflow-wrap: anywhere;
+  }
+
+  .cta-pannello {
+    padding: 30px 22px;
+  }
+
+  .cta-testo {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cta-bottoni {
+    width: 100%;
+  }
+
+  .cta-bottoni .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #mail {
+    overflow-wrap: anywhere;
+  }
+
+  .sostegno {
+    padding: 44px 0;
+  }
+
+  .sostegno-scatola h3 {
+    font-size: 24px;
+  }
+
+}
+
+/* =============================================================================
+   25) LIGHTBOX  —  Il popup che mostra l'immagine a piena
+   risoluzione. È un riquadro che copre tutto lo schermo (overlay scuro) con
+   l'immagine al centro e una X per chiuderlo.
+ ========================================================================== */
+/* --- I LINK TRATTEGGIATI NELLA GUIDA --- */
+.link-zoom-trigger {
+  display: inline-flex;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  align-items: center;
+  gap: 4px;
+  color: var(--accento); /* CORRETTO: "--colore-accento" non esisteva, quindi veniva
+     sempre usato il fallback blu #0056b3, scollegato dal tema. Ora usa "--accento". */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-style: dotted;
+  font-weight: 600;
+  cursor: pointer;
+}
+.link-zoom-trigger:hover {
+  color: var(--accento-scuro); /* CORRETTO: "--colore-accento-hover" non esisteva; ora
+     usa "--accento-scuro", già impiegata per l'hover di bottoni e link nel resto del sito. */
+  background-color: rgba(28, 95, 112, 0.08); /* Coerenza: prima era una sfumatura del
+     vecchio blu (rgba di #0056b3); ora è la stessa sfumatura ma calcolata sul vero
+     colore d'accento del tema (#1C5F70), per non lasciare un'incongruenza cromatica
+     fra testo e sfondo al passaggio del mouse. */
+  border-radius: 4px;
+}
+
+/* --- L'OVERLAY SCURO DI SFONDO --- */
+.lightbox-zoom-overlay {
+  display: flex;               /* Sempre "flex": la visibilità è gestita sotto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  /* backdrop-filter: blur(4px); */
+  z-index: 2000;
+  justify-content: center; /* Centra il wrapper in mezzo allo schermo */
+  align-items: center;
+  /*  padding: 20px; Margine di sicurezza per non toccare mai i bordi del monitor */
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;     /* 1. NASCOSTO DI DEFAULT: non intercetta i click */
+  /* In chiusura la visibility scatta solo DOPO la dissolvenza; in apertura
+     diventa invece subito visibile, così i controlli sono immediatamente focusabili. */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.lightbox-zoom-overlay.visibile {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+/* --- IL WRAPPER CHE "ABBRACCIA" L'IMMAGINE --- */
+.lightbox-zoom-wrapper {
+  position: relative;
+  background: var(--accento-tenue); /* Prima scritto a mano "#DEEAEA": è lo stesso
+     identico colore già definito in questa variabile, semplice copia-incolla. */
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  width: fit-content; /* Si stringe fino alla larghezza del contenuto, ma non supera mai il 100% dello schermo */
+  max-width: 92vw;   /* non più larga di del 92% schermo */
+  max-height: 92vh;  /* non più alta dell'92% dell'altezza schermo */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- LA SCHERMATA CONTENUTA NEL LIGHTBOX --- */
+.lightbox-zoom-item {
+  position: relative; /* Serve da ancoraggio per il suggerimento sovrapposto sotto */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- L'IMMAGINE PROTAGONISTA --- */
+.lightbox-zoom-item img,
+.lightbox-zoom-item video {
+  display: block;
+  max-width: 92vw; /* Non più larga del contenitore */
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Scala l'immagine senza deformarla */
+  border-radius: 8px; /* Arrotondato su tutti e quattro gli angoli, per combaciare
+     sempre col bordo della lightbox e con la fascia del suggerimento sovrapposta */
+     transition: opacity 0.15s ease; /* Dissolvenza morbida quando si cambia tema */
+}
+
+/* Un elemento con l'attributo "hidden" dentro la lightbox deve restare DAVVERO
+ *  invisibile: la regola qui sopra mette "display: block", che altrimenti
+ *  scavalcherebbe il nascondimento e lascerebbe un riquadro vuoto (il <video>
+ *  senza sorgente occupa 300×150 di default) sotto l'immagine — era la causa
+ *  della banda in basso con le immagini piccole. Questa regola, più specifica,
+ *  ripristina il nascondimento. */
+.lightbox-zoom-item [hidden] {
+  display: none;
+}
+
+/* Il bottone per passare dal tema chiaro al tema scuro (e viceversa)
+   dentro la lightbox: una "pillola" agganciata in alto a sinistra,
+   speculare alla "X" di chiusura. Contiene due icone fisse (sole e luna)
+   e un pallino che scorre da un lato all'altro per indicare il tema
+   attivo. Resta nascosto (attributo "hidden") finché lo script non lo
+   mostra, cosa che avviene solo per gli screenshot che dispongono di
+   entrambe le varianti (data-chiaro e data-scuro). */
+.lightbox-zoom-tema {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 60px;
+  height: 32px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 2px solid var(--bordo-neutro);
+  background-color: var(--accento-tenue);
+  padding: 0 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+.lightbox-zoom-tema[hidden] {
+  display: none; /* Forza il rispetto dell'attributo "hidden" sopra il display:flex */
+}
+.lightbox-zoom-tema:hover {
+  transform: scale(1.05);
+}
+
+/* Le due icone restano sempre visibili, sole a sinistra e luna a destra:
+   il pallino scorre "sotto" di esse per evidenziare quella attiva. */
+.lightbox-zoom-tema-traccia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  z-index: 1;
+}
+
+/* Il pallino: bianco (chiaro) quando è attivo il sole, scuro quando è
+   attiva la luna — così il colore stesso richiama il tema selezionato. */
+.lightbox-zoom-tema-pallino {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--bianco);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transition: left 0.2s ease, background-color 0.2s ease;
+  z-index: 0;
+}
+.lightbox-zoom-tema.tema-scuro .lightbox-zoom-tema-pallino {
+  left: 31px;
+  background-color: var(--inchiostro);
+}
+
+/* Il suggerimento è sovrapposto (position:absolute) al fondo dell'immagine,
+   non aggiunto sotto: così non allunga mai il riquadro della lightbox,
+   qualunque sia la dimensione dello screenshot aperto. Sfondo scuro
+   semi-trasparente e testo bianco, per restare leggibile sopra qualunque
+   screenshot, chiaro o scuro. Mostrato solo se il trigger ha un
+   data-suggerimento impostato (per ora solo la card "Tema chiaro e scuro"). */
+.lightbox-zoom-suggerimento {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  margin: 0;
+  padding: 12px 12px;
+  font-size: 16px;
+  color: var(--bianco);
+  background-color: rgba(30, 42, 55, 0.82);
+  border-radius: 10px;
+  text-align: center;
+}
+.lightbox-zoom-suggerimento[hidden] {
+  display: none;
+}
+
+/* Il bottone "X" per chiudere, agganciato in alto a destra dell'immagine. */
+.lightbox-zoom-chiudi {
+  position: absolute;
+  top: -18px;    /* Esce di 18px sopra il bordo superiore... */
+  right: -18px;    /* Esce di 18px sopra il bordo superiore... */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--bordo-neutro); /* Prima scritto a mano "#dddddd": ora ha una
+     sua variabile dedicata (non coincide col --bordo esistente, quindi non l'ho
+     riusata per non alterare il contrasto). */
+  background-color: var(--bianco);
+  color: var(--inchiostro);
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.lightbox-zoom-chiudi:hover {
+  transform: scale(1.1);
+  background-color: var(--accento);
+  color: var(--rosso-attenzione); /* Diventa leggermente rosso al passaggio del mouse:
+     prima era scritto a mano "#d90000", ora ha una sua variabile di stato dedicata. */
+}
+
+/* La regola responsive di ".lightbox-zoom-chiudi" (sotto 600px) è stata
+   spostata e unificata nella media query @media (max-width: 600px) della
+   Sezione 13, insieme alle altre regole "smartphone" dello stesso sito. */
+
+/* --- LOGHI DEI SISTEMI OPERATIVI (PAGINA DOWNLOAD) --- */
+.download-os-loghi {
+  display: flex;
+  justify-content: center;   /* Centra i loghi orizzontalmente nella colonna */
+  gap: 28px;                 /* Spazio generoso tra il logo Windows e Linux */
+  margin-top: 16px;          /* Distanza dal titolo h1 */
+  margin-bottom: 24px;       /* Distanza dal testo descrittivo sottostante */
+}
+
+.os-logo-item svg {
+  width: 38px;               /* Dimensione equilibrata, visibile ma discreta */
+  height: 38px;
+  color: var(--testo);       /* Grigio-azzurro di base del sito */
+  opacity: 0.55;             /* Effetto leggermente smorzato di default */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease, color 0.2s ease;
+}
+
+/* Interazione: quando l'utente passa sopra con il puntatore */
+.os-logo-item:hover svg {
+  opacity: 1;
+  color: var(--verde-conferma);  /* Al passaggio: verde "compatibile" (richiamo del verde del sito) */
+  transform: scale(1.18);        /* Micro-ingrandimento elastico molto piacevole */
+}
+
+/* =============================================================================
+ *  26) TOCCO FINALE  —  Dettagli d'autore: selezione testo, scrollbar.
+ *  ========================================================================== */
+
+/* --- 1. EFFETTO EVIDENZIATORE --- */
+/* Quando l'utente seleziona il testo col mouse */
+::selection {
+  background-color: #FCEE75; /* Un bellissimo giallo evidenziatore */
+  color: var(--inchiostro);  /* Il testo rimane scuro e leggibile */
+}
+::-moz-selection {
+  background-color: #FCEE75;
+  color: var(--inchiostro);
+}
+
+/* --- 2. BARRA DI SCORRIMENTO COORDINATA --- */
+/* Personalizza la scrollbar per Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 16px; /* Leggermente più larga per comodità */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sfondo); /* Si mimetizza con i quadretti del foglio */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(30, 42, 55, 0.25); /* Il colore dell'inchiostro diluito che abbiamo usato per i numeri */
+  border-radius: 10px;
+  border: 5px solid var(--sfondo); /* Bordo spesso dello stesso colore dello sfondo per farla sembrare "sospesa" */
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accento); /* Quando la afferri col mouse, si accende di color petrolio! */
+}
+
+
+/* =============================================================================
+   27) ACCESSIBILITÀ  —  Messa a fuoco da tastiera e rispetto "meno animazioni".
+   ========================================================================== */
+
+/* --- 1. ACCESSIBILITÀ: CONTORNO TASTIERA COORDINATO --- */
+/* Sostituisce l'anello blu di Chrome con un tratteggio color petrolio */
+*:focus-visible {
+  outline: 2px dashed var(--accento);
+  outline-offset: 4px;
+}
+
+/* --- 2. Se l'utente ha chiesto al sistema "riduci le animazioni", le disattiviamo. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+  /* Chi ha impostato "riduci le animazioni" nel sistema operativo non deve
+     MAI vedere elementi bloccati a metà di un'animazione di comparsa:
+     qui li rendiamo subito visibili, senza spostamento né dissolvenza. */
+  .rivela {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --- Comparsa graduale allo scroll (elementi con classe "rivela",
+   aggiunta automaticamente via JS a card e sezioni — vedi script.js) --- */
+.rivela {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+/* Il JS aggiunge questa classe quando l'elemento entra nello schermo. */
+.rivela.visibile {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 3. OTTIMIZZAZIONE PER LA STAMPA --- */
+/* Regole applicate SOLO quando l'utente stampa la pagina o la salva in PDF */
+@media print {
+  /* Nasconde i menu, la barra in alto, il footer e tutti i bottoni di azione */
+  header, footer, .cta-bottoni, .btn {
+    display: none !important;
+  }
+
+  /* Sbianca lo sfondo e forza il testo in nero puro per non consumare toner */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Raddrizza le card e gli occhielli per una lettura perfetta su carta */
+  .card, .passo, .categoria, .occhiello {
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+  }
+}
+
+/* =============================================================================
+   28) MASCOTTE "OMINO"  —  piccoli tocchi decorativi sparsi nelle pagine,
+   sempre gli stessi 15 disegni (in /img/omino_XX.svg), posizionati in modo
+   diverso a seconda del contesto di ciascuna pagina.
+   ========================================================================== */
+.omino {
+  display: block;
+  pointer-events: none;   /* è decorativo: non deve intercettare i click */
+  user-select: none;
+}
+
+/* Home — sopra ai due bottoni della CTA, centrato come loro */
+.omino-cta-index {
+  width: 72px;
+  aspect-ratio: 134 / 214;   /* le dimensioni native del viewBox di omino_home.svg */
+  align-self: center;
+  margin-bottom: 2px;
+}
+
+/* Funzionamento — sostituisce l'iconcina "i" cerchiata nella didascalia */
+.omino-didascalia {
+  width: 64px;
+}
+
+/* Guida — sotto l'ultima voce dell'indice ("7 Risolvi i problemi") */
+.omino-guida-indice {
+  width: 72px;
+  margin: 16px auto 0;
+}
+
+/* Privacy — dentro la cella vuota in alto a sinistra della tabella */
+/* La cella vuota in alto a sinistra della tabella: deve poter "ospitare"
+   l'omino come elemento sovrapposto (position:absolute), senza che
+   quest'ultimo influenzi l'altezza della riga. */
+.tabella-confronto thead th:first-child {
+  position: relative;
+}
+
+.tabella-scroll {
+  overflow-x: auto;      /* lo scroll orizzontale vive SOLO qui */
+  padding-top: 8px;     /* "stanza" in cui il busto dell'omino sporge sopra la
+  cella senza essere tagliato dallo scroll. È la manopola del "gap": più
+  piccolo = meno spazio sopra le intestazioni (ma non tagliare la testa). */
+}
+
+.omino-tabella {
+  position: absolute;      /* si posiziona DENTRO la cella d'angolo (che è già
+  position:relative): è lei il riferimento, non più tutto il box. Così
+  l'omino segue la cella quando la tabella si restringe = responsive. */
+  left: 50%;               /* metà della cella: centrato a QUALSIASI larghezza */
+  bottom: 6px;            /* piedi sulla linea che chiude la cella; il -3
+  compensa il piccolo vuoto sotto i piedi nel disegno. Manopola verticale fine. */
+  transform: translateX(-50%) scaleX(-1);   /* -50% completa il centraggio,
+  scaleX(-1) capovolge l'omino come prima. */
+  width: 80px;
+}
+
+/* Autore — accanto al bottone "Offrimi un caffè su Ko-fi" */
+.omino-sostegno {
+  width: 62px;
+}
+/* Il gap tra omino e bottone Ko-fi: era 18px inline, ora una classe vera,
+   allargata per dare più "respiro" fra i due elementi. */
+.sostegno-bottone--con-omino {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Download — "appeso" al bordo inferiore del pannello, sotto al bottone */
+/* Download — balla, "piantato per terra" subito sotto al bottone (non più
+   appeso al bordo: dava un'idea di precarietà, in contrasto col messaggio
+   "Ultima versione stabile" del pannello). In flusso normale, non
+   "position:absolute": così non rischia mai di sovrapporsi a nient'altro. */
+.omino-download-balla {
+  width: 64px;
+  align-self: center;   /* si centra sotto al bottone, anche se
+     .cta-bottoni non centra gli altri figli di suo */
+}
+
+/* =============================================================================
+ *  29) PAGINA 404  —  stili che prima erano scritti "inline" dentro 404.html,
+ *  ora raccolti qui per coerenza con il resto del sito.
+ *  ========================================================================== */
+
+/* La sezione della 404: testo centrato e ampio respiro sopra/sotto. */
+.errore-404 {
+  text-align: center;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+/* Colonna centrale più stretta del solito, così il testo non si allarga troppo. */
+.errore-404 .contenitore {
+  max-width: 640px;
+}
+
+/* L'omino disegnato: piccolo e centrato sotto il testo. */
+.errore-404 .omino {
+  width: 52px;
+  margin: 48px auto 0;
+}
+
+/* La riga dei due bottoni ("Torna alla Home" / "Vai al Download"): centrati,
+ *  distanziati e capaci di andare a capo su schermi stretti. */
+.errore-404-bottoni {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* =============================================================================
+ *  30) PRIVACY  —  spaziature prima scritte "inline" in privacy.html, ora qui.
+ *  ========================================================================== */
+
+/* Riga introduttiva "Ecco un rapido confronto...": un po' di stacco sopra. */
+.confronto-intro { margin-top: 64px; }
+
+/* Titoli che aprono un blocco dell'approfondimento, con una sottile linea di
+ *  separazione sopra. Va AFFIANCATO a .titolo-sezione-icona (non messo dentro
+ *  di essa, che è condivisa con Autore e Guida). */
+.titolo-con-separatore {
+  margin-top: 40px;
+  border-top: 1px solid var(--bordo-tenue);
+  padding-top: 24px;
+}
+
+/* =============================================================================
+ *  31) ICONE DEI RIQUADRI "EVIDENZA" (Funzionamento) — seguono il teal del brand.
+ *  -----------------------------------------------------------------------------
+ *  Imposta il "color" sull'icona: tutto ciò che usa currentColor diventa teal.
+ *  L'icona "Genere misto" usa colori propri (rosso/viola) scritti nei suoi path,
+ *  quindi questa regola non la tocca e resta com'è.
+ *  ========================================================================== */
+.evidenza-testo h3 svg {
+  color: var(--accento);
+}
+
+/* =============================================================================
+ *  32) SPUNTE VERDI DELLA TABELLA (Privacy) — unificate alla variabile del sito.
+ *  -----------------------------------------------------------------------------
+ *  Le spunte "sì/positivo" della colonna PostiPerfetti usano currentColor; qui
+ *  diamo loro il verde ufficiale del sito (--verde-conferma), così il colore
+ *  vive in un punto solo insieme a tutti gli altri.
+ *  ========================================================================== */
+.tabella-confronto td svg {
+  color: var(--verde-conferma);
+}
+
+/* =============================================================================
+ *  33) SEZIONE "REQUISITI" (download) — avvicinata al box qui sopra e con la
+ *  lista a sinistra (titolo e frase introduttiva restano centrati).
+ *  ========================================================================== */
+.sezione-requisiti {
+  padding-top: 0;       /* toglie lo stacco in alto tipico di .caratteristiche */
+  margin-top: -32px;    /* avvicina al riquadro "Ultima versione stabile"; più negativo = più vicino */
+}
+.card-requisiti {
+  text-align: left;     /* tutto il box (titolo, icona, lista) allineato a sinistra */
+  max-width: 90%;
+  margin-inline: auto;   /* la centra */
+}
+
+
+.testo-piccolo {
+  font-size: 0.9em;
+  color: var(--testo);
+}
