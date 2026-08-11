@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Logo PostiPerfetti — ricostruzione vettoriale, sfondo trasparente.
+  Struttura: griglia 2x2 di "banchi".
+    · Riga in alto  : banchi VUOTI  = bordo tratteggiato + lettera P
+    · Riga in basso : banchi ASSEGNATI = riquadro pieno + spunta bianca
+    · Sopra ogni banco: una piccola "linguetta" (stesso colore, semi-trasparente)
+  Colori del brand:
+    blu  #1565C0   ·   verde #2E7D32   ·   grigio tratteggio #4A5567
+  Nota sulla "P": è testo dal vivo in un grassetto senza-grazie. Per renderla
+  indipendente dal font (consigliato), aprila in Inkscape e usa
+  "Percorso > Oggetto in tracciato".
+-->
+
+<svg
+   viewBox="0 0 256 256"
+   width="256"
+   height="256"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="ICON-MASTER_Claude.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.390625"
+     inkscape:cx="127.77224"
+     inkscape:cy="128"
+     inkscape:window-width="2560"
+     inkscape:window-height="1333"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <!-- ===== Banco VUOTO — alto/sinistra (blu) ===== -->
+  <g
+     id="g2">
+    <rect
+       x="29"
+       y="44"
+       width="91"
+       height="71"
+       rx="9"
+       fill="none"
+       stroke="#4A5567"
+       stroke-width="3"
+       stroke-dasharray="6,4"
+       id="rect2" />
+    <g fill="#1565C0"><path d="M59.784000000000006 97.5V61.1H75.54Q80.428 61.1 83.964 62.68599999999999Q87.5 64.27199999999999 89.424 67.23599999999999Q91.348 70.2 91.348 74.30799999999999Q91.348 78.364 89.424 81.328Q87.5 84.292 83.964 85.878Q80.428 87.464 75.54 87.464H64.464L68.208 83.668V97.5ZM68.208 84.604 64.464 80.6H75.072Q78.97200000000001 80.6 80.89600000000002 78.936Q82.82000000000001 77.272 82.82000000000001 74.30799999999999Q82.82000000000001 71.292 80.89600000000002 69.628Q78.97200000000001 67.964 75.072 67.964H64.464L68.208 63.96Z"/></g>
+  </g>
+  <!-- ===== Banco VUOTO — alto/destra (verde) ===== -->
+  <g
+     id="g4">
+    <rect
+       x="135"
+       y="44"
+       width="91"
+       height="71"
+       rx="9"
+       fill="none"
+       stroke="#4A5567"
+       stroke-width="3"
+       stroke-dasharray="6,4"
+       id="rect4" />
+    <g fill="#2E7D32"><path d="M165.784 97.5V61.1H181.54Q186.428 61.1 189.964 62.68599999999999Q193.5 64.27199999999999 195.42399999999998 67.23599999999999Q197.34799999999998 70.2 197.34799999999998 74.30799999999999Q197.34799999999998 78.364 195.42399999999998 81.328Q193.5 84.292 189.964 85.878Q186.428 87.464 181.54 87.464H170.464L174.208 83.668V97.5ZM174.208 84.604 170.464 80.6H181.072Q184.97199999999998 80.6 186.896 78.936Q188.82 77.272 188.82 74.30799999999999Q188.82 71.292 186.896 69.628Q184.97199999999998 67.964 181.072 67.964H170.464L174.208 63.96Z"/></g>
+  </g>
+  <!-- ===== Banco ASSEGNATO — basso/sinistra (blu) ===== -->
+  <g
+     id="g6">
+    <rect
+       x="29"
+       y="143"
+       width="91"
+       height="69"
+       rx="9"
+       fill="#1565C0"
+       id="rect6" />
+    <path
+       d="M 58.5 175.5 L 70.5 186.5 L 92.5 164.5"
+       fill="none"
+       stroke="#FFFFFF"
+       stroke-width="7"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path6" />
+  </g>
+  <!-- ===== Banco ASSEGNATO — basso/destra (verde) ===== -->
+  <g
+     id="g8">
+    <rect
+       x="135"
+       y="143"
+       width="91"
+       height="69"
+       rx="9"
+       fill="#2E7D32"
+       id="rect8" />
+    <path
+       d="M 164.5 175.5 L 176.5 186.5 L 198.5 164.5"
+       fill="none"
+       stroke="#FFFFFF"
+       stroke-width="7"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path8" />
+  </g>
+</svg>
