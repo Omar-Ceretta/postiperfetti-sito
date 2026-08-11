@@ -1,0 +1,56 @@
+  <meta charset="UTF-8">
+  <!-- Fa sì che il sito si adatti alla larghezza dei telefoni. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{TITOLO}}</title>
+  <meta name="description" content="{{DESCRIZIONE}}">
+
+  <!-- URL canonico (evita contenuti duplicati agli occhi di Google) -->
+  <link rel="canonical" href="{{CANONICO}}">
+
+  <!-- Open Graph: come appare il link su Facebook, LinkedIn, WhatsApp... -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="PostiPerfetti">
+  <meta property="og:url" content="{{CANONICO}}">
+  <meta property="og:title" content="{{TITOLO}}">
+  <meta property="og:description" content="{{DESCRIZIONE}}">
+  <meta property="og:image" content="https://postiperfetti.it/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo di «PostiPerfetti», software per assegnare i posti in classe">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITOLO}}">
+  <meta name="twitter:description" content="{{DESCRIZIONE}}">
+  <meta name="twitter:image" content="https://postiperfetti.it/img/og-image.png">
+  <meta name="twitter:image:alt" content="Logo di «PostiPerfetti», software per assegnare i posti in classe">
+
+  <!-- Preload dei font principali (Lora, Inter, Caveat): il browser inizia a
+       scaricarli SUBITO, in parallelo, riducendo il "lampeggio" del testo al
+       primo caricamento. "crossorigin" è OBBLIGATORIO sui font: senza, ogni
+       file verrebbe scaricato due volte (una per il preload, una per il CSS).
+       Nota: Caveat è .ttf, quindi il suo type è font/ttf; gli altri due sono
+       font/woff2. I percorsi partono da "fonts/" (senza ../) perché le pagine
+       stanno nella cartella principale, mentre il CSS — che sta in css/ — usa
+       "../fonts/". -->
+  <link rel="preload" href="fonts/lora-variabile.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-variabile.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Caveat-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+
+  <!-- Il foglio di stile condiviso da tutte le pagine. -->
+  <link rel="stylesheet" href="css/stile.css">
+  <script src="js/script.js" defer></script>
+
+  <!-- Favicon: SVG per i browser (schede, preferiti), .ico (16/32/48) per legacy e Windows -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/favicon.ico" sizes="32x32">
+
+  <!-- Home screen iOS, icona per gli smartphone -->
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <!-- Manifest PWA (icone Android/maskable) + metadati del sito + colore della barra del browser -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ECE7DA">
+
