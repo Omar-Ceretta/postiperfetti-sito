@@ -21,9 +21,7 @@
         <span class="occhiello">Guida all'uso</span>
         <h1 class="sezione-titolo">Dalla classe vuota alla disposizione pronta da stampare.</h1>
         <p class="sezione-intro">
-          Segui il percorso in quest'ordine: crea il file della classe, imposta i vincoli degli studenti,
-          configura l'aula, scegli la modalità di assegnazione e conserva nello Storico
-          le disposizioni usate.
+          Crea il file della classe, imposta i vincoli degli studenti, configura l'aula, scegli la modalità di assegnazione e conserva nello Storico le disposizioni usate. NOTA: questa guida è presente anche <i>all'interno del programma</i>.
         </p>
 
         <h2 class="sr-only">Le fasi della guida, in breve</h2>
@@ -146,33 +144,37 @@
         <div class="guida-sezioni">
 
           <article class="card" id="file-classe">
-            <h3>1 — Crea e carica la classe</h3>
+            <h3>1 — Crea e seleziona la classe</h3>
             <ul class="lista-autore">
               <li>
-                Nella tab <b>Editor studenti</b>, clicca su
-                <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_01.png" data-titolo="Apri cartella">
-                  <b>Apri cartella</b>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_01.mp4" data-titolo="Apri la cartella">
+                  ~ vedi
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button>.
+                </button> }.
+                Dopo aver avviato il programma, clicca sul pulsante "<b>Apri cartella</b>". Il tuo file manager ti mostrerà la cartella che contiene le classi.
               </li>
               <li>
-                Crea un file, per esempio <code>Classe2B.txt</code>, e inserisci una riga per studente nel formato
-                <code>Cognome;Nome;Genere</code>, usando <code>M</code> o <code>F</code>. Non mettere spazi attorno ai punti e virgola;
-                i nomi composti sono ammessi. Guarda
-                <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_02.png" data-titolo="Esempio di file base">
-                  <b>l'esempio</b>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_02.mp4" data-titolo="Crea il file della classe">
+                  ~ vedi
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button>.
+                </button> }.
+                Con un normale editor di testo — ad es. "Blocco note" (Notepad) su Windows o un editor equivalente su Linux — <b>crea un nuovo file di testo in formato .txt</b> con il nome della tua classe (ad es. "<code>Classe 1A.txt</code>").<br>
+                💡 Nota per Windows: l'estensione ".txt" potrebbe essere nascosta, quindi è possibile che il file ti appaia semplicemente come "Classe 1A". È normale.<br>NON usare invece programmi di videoscrittura come Microsoft Word o LibreOffice Writer: il file deve essere salvato come semplice testo.
+              </il>
+              <li>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_03.mp4" data-titolo="Inserisci gli studenti">
+                ~ vedi
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button> }.
+                Apri il file e <b>inserisci gli studenti</b>, uno per riga e in ordine alfabetico, nel formato <code>Cognome;Nome;Genere</code> (usa <code>M</code> o <code>F</code>), senza spazi prima e dopo i due punti e virgola.
               </li>
               <li>
-                Clicca su
-                <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_03.png" data-titolo="Seleziona classe">
-                  <b>Seleziona classe</b>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_04.mp4" data-titolo="Seleziona la classe">
+                  ~ vedi
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button>: l'Editor crea una scheda per ogni studente e riordina automaticamente l'elenco, se necessario.
-              </li>
-              <li>
-                Un file base contiene soltanto i dati anagrafici. Dopo le modifiche, <b>SALVA e CARICA</b> lo trasforma nel formato completo usato dal programma.
+                </button> }.
+                Clicca su "<b>Seleziona classe</b>": nell'Editor che si aprirà verrà creata una scheda per ogni studente, che, per il momento, conterrà soltanto i suoi dati anagrafici.<br>
+                💡 Un messaggio ti ricorda infatti che DOVRAI IMPOSTARE POSIZIONE E VINCOLI degli alunni, senza i quali le assegnazioni sarebbero del tutto casuali.
               </li>
             </ul>
           </article>
@@ -181,45 +183,66 @@
             <h3>2 — Imposta gli studenti e i vincoli</h3>
             <ul class="lista-autore">
               <li>
-                Il
-                <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_04.png" data-titolo="Avviso del formato base">
-                  <b>messaggio iniziale</b>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_05.mp4" data-titolo="Assegna la posizione">
+                  ~ vedi
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button> ricorda che posizione e relazioni vanno impostate prima del salvataggio.
+                </button> }.
+                🪑 Nel menu "<b>Posizione</b>" scegli:
+                <br>&middot; "NORMALE", nessuna preferenza;
+                <br>&middot; "PRIMA", OBBLIGO di stare nella prima fila (utile ad es. per gli allievi più propensi a distrarsi, con difficoltà di vista o altri bisogni particolari);
+                <br>&middot; "ULTIMA", preferenza per il fondo dell'aula (utile ad es. per allievi di alta statura o per altre esigenze);
+                <br>&middot; "FISSO", posto STABILE in prima fila, nel primo banco a sinistra.
               </li>
               <li>
-                Nel menu
-                <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_05.mp4" data-titolo="Posizione dello studente">
-                  <b>Posizione</b>
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_06.mp4" data-titolo="Aggiungi le incompatibilità">
+                  ~ vedi
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button> scegli:
-                <br>&middot; <b>NORMALE</b>, nessuna preferenza;
-                <br>&middot; <b>PRIMA</b>, obbligo di stare nella prima fila;
-                <br>&middot; <b>ULTIMA</b>, preferenza per il fondo dell'aula;
-                <br>&middot; <b>FISSO</b>, posto stabile davanti a sinistra.
+                </button> }.
+                🚫 Con "<b>Aggiungi INCOMPATIBILITÀ</b>" puoi evitare una vicinanza. I livelli sono progressivamente più forti; il 3°, in particolare, IMPEDISCE che i due studenti siano adiacenti:
+                <br>&middot; <b>livello 1</b>, meglio se non vicini, ma accettabile se necessario;
+                <br>&middot; <b>livello 2</b>, evitare se possibile, penalità significativa;
+                <br>&middot; <b>livello 3</b>, MAI vicini — vincolo inviolabile.
               </li>
               <li>
-                Con <b>Aggiungi INCOMPATIBILITÀ</b> puoi evitare una vicinanza. I livelli 1 e 2 sono progressivamente più forti; il livello 3 è assoluto e impedisce che i due studenti siano adiacenti.
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_07.mp4" data-titolo="Aggiungi le affinità">
+                  ~ vedi
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button> }.
+                💚 Con "<b>Aggiungi AFFINITÀ</b>" puoi favorire una vicinanza. Anche in questo caso i livelli sono progressivamente più forti, sebbene nessuno rappresenti un vincolo assoluto.
+                <br>&middot; <b>livello 1</b>, dà un piccolo bonus alla vicinanza;
+                <br>&middot; <b>livello 2</b>, conferisce un bonus più significativo;
+                <br>&middot; <b>livello 3</b>, fa sì che l'algoritmo cerchi di metterli vicini ogni volta in cui c'è la possibilità.
               </li>
               <li>
-                Con <b>Aggiungi AFFINITÀ</b> puoi favorire una vicinanza. Il livello 3 è una preferenza molto forte, ma non un obbligo assoluto.
+                👥 Dopo aver scelto il compagno, <b>ricorda di selezionare il livello</b>. Il promemoria compare una sola volta per ciascun tipo di vincolo, ma il programma blocca il salvataggio finché una riga resta incompleta.
               </li>
               <li>
-                Dopo aver scelto il compagno, scegli anche il livello. Il promemoria compare una sola volta per ciascun tipo di vincolo, ma il programma blocca il salvataggio finché una riga resta incompleta.
+                🗑️ <b>Per eliminare un vincolo</b>, clicca il bottone "Rimuovi". Il vincolo speculare sull'altro studente verrà rimosso automaticamente.
               </li>
               <li>
-                Ogni relazione è bidirezionale: l'Editor aggiorna automaticamente anche la scheda dell'altro studente.
+                ⇆ <b>Non devi preoccuparti di ripetere i vincoli.</b> Ogni relazione è bidirezionale: l'Editor aggiorna automaticamente anche la scheda dell'altro studente. Questo vale sia per le incompatibilità/affinità, che per le modifiche di livello e le rimozioni.
               </li>
               <li>
-                Nei terzetti e nei quartetti contano soltanto le adiacenze consecutive: in "<code>A - B - C</code>", "A" e "C" non sono considerati vicini.
+                { <button type="button" class="link-zoom-trigger" data-full="img/guida/guida_08.mp4" data-titolo="Opzionale">
+                  ~ vedi
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button> }.
+                <i>(OPZIONALE)</i> Clicca su "Espandi schede" per una visione d'insieme di tutte le schede studente e su "Dettaglio vincoli" per una panoramica completa di tutti i vincoli che hai inserito.
               </li>
+              <li>
+                NOTA = nei terzetti e nei quartetti contano soltanto le adiacenze consecutive: in "<code>A - B - C</code>", gli allievi "A" e "C" NON sono considerati vicini.
+              </li>
+              <li>
+              ⚙️ <b>Modifica dei vincoli in corso d'anno</b>.<br>
+              &middot; Se in futuro vorrai rimuovere, aggiungere o cambiare dei vincoli, basterà ricaricare nell'Editor il file con "Seleziona classe". Le schede, popolate automaticamente con tutti i dati esistenti di ciascun allievo, saranno pronte per essere modificate.<br>
+              &middot; Se invece dovessi rimuovere o aggiungere un allievo (per trasferimento, cambio sezione, bocciatura...), dovrai aprire manualmente il file di testo della classe e cancellarne la riga, oppure aggiungerlo nel modo consueto (con <code>Cognome;Nome;Genere</code>).
             </ul>
           </article>
 
           <article class="card" id="fisso-bes">
-            <h3>3 — Studente FISSO</h3>
+            <h3>3 — Lo studente FISSO</h3>
             <ul class="lista-autore">
-              <li>Puoi indicare <b>al massimo un FISSO</b> per classe.</li>
+              <li>📌 Puoi indicare <b>al massimo un FISSO</b> per classe.</li>
               <li>Occupa sempre il primo posto a sinistra della prima fila, vicino alla cattedra.</li>
               <li>Il programma sceglie il vicino diretto tenendo conto dei vincoli e di chi ha già svolto quel ruolo nelle assegnazioni precedenti.</li>
               <li>Nella scheda del FISSO, incompatibilità e affinità sono disabilitate: imposta la relazione nella scheda dell'altro studente.</li>
@@ -230,29 +253,45 @@
           <article class="card" id="configurazione-aula">
             <h3>4 — Salva e configura l'aula</h3>
             <ul class="lista-autore">
-              <li>Controlla il file con <b>Preview file classe (.txt)</b>, poi clicca su <b>SALVA e CARICA</b>. Soltanto ora il pannello di sinistra diventa operativo.</li>
-              <li>In <b>CONFIGURAZIONE AULA</b> scegli <b>A coppie</b> oppure <b>A terzetti</b>.</li>
-              <li>Modifica <b>Posti per fila</b> con i pulsanti − e +. Il valore <b>File</b> è di sola lettura e viene ricalcolato automaticamente.</li>
-              <li>
-                Il box del resto compare soltanto quando serve:
-                <br>&middot; a coppie, viene formato un trio;
-                <br>&middot; a terzetti, può comparire una coppia o un quartetto;
-                <br>&middot; quando disponibile, puoi scegliere <b>1 coppia</b> oppure <b>2 quartetti</b>.
+              <li>Clicca su "<b>SALVA e CARICA</b>": il pannello di sinistra diventerà operativo e compariranno i riquadri sottoelencati.</li>
+              <li>"<b>CONFIGURAZIONE AULA</b>": puoi fare in modo che gli allievi siano adiacenti "<b>a coppie</b>" oppure "<b>a terzetti</b>". Il programma calcola in automatico il numero di file necessarie, ma puoi modificare (con i pulsanti + e −) il numero di banchi per fila.
               </li>
-              <li>Per il blocco finale usa le etichette reali dell'interfaccia: <b>Davanti</b>, <b>In mezzo</b>, <b>In fondo</b>. Il programma mostra soltanto le posizioni compatibili.</li>
-              <li><b>Preferisci coppie miste (M+F)</b> favorisce le vicinanze miste, ma non le rende obbligatorie.</li>
+              <li>
+              "<b>GENERE MISTO</b>": se attivi l'opzione "Preferisci coppie miste (M+F)", l'algoritmo preferirà coppie maschio+femmina (non è un obbligo assoluto, ma un BONUS forte).
+              </li>
+              <li>
+              "<b>MODALITÀ ASSEGNAZIONE</b>": puoi decidere se generare un solo mese alla volta (con la "modalità <b>Mensile</b>"), oppure più mesi in un colpo solo (con la "modalità <b>Annuale</b>"), fino a un massimo di 10 alla volta.
+              </li>
+              <li>
+              NOTA: il box "GESTIONE NUMERO DISPARI" compare soltanto quando:
+              <br>&middot; a coppie, viene formato un trio;
+              <br>&middot; a terzetti, devi scegliere fra una coppia o un quartetto.<br>
+              In ogni caso <b>potrai scegliere in quale posizione inserirlo</b>: "davanti", "al centro" o "in fondo" all'aula.
+              </li>
+
             </ul>
           </article>
 
           <article class="card" id="generazione">
-            <h3>5 — Scegli Mensile o Annuale</h3>
+            <h3>5 — Meglio "Mensile" o "Annuale"?</h3>
             <ul class="lista-autore">
-              <li><b>Mensile (un mese)</b>: genera una sola disposizione. Al termine apre la tab Aula e mostra il riepilogo.</li>
-              <li><b>Annuale (più mesi)</b>: genera da 1 a 10 mesi in coda allo Storico e li presenta in un'anteprima.</li>
-              <li>Nell'anteprima annuale puoi aprire la disposizione e il Report di ogni mese, poi scegliere <b>Accetta e salva nello Storico</b> oppure <b>Scarta</b>.</li>
-              <li>Se l'elaborazione raggiunge il limite massimo prima di completare tutti i mesi, l'anteprima segnala un'annata parziale.</li>
-              <li>Il programma cerca una disposizione che rispetti tutti i criteri impostati e non ripeta nessuna vicinanza già registrata. Se non trova una soluzione, ripete la ricerca mettendo progressivamente da parte le preferenze meno vincolanti: prima quelle di livello 1, poi anche quelle di livello 2 e la posizione ULTIMA. Solo nell’ultimo tentativo può trascurare anche le affinità di livello 3 e la preferenza per il genere misto, ammettendo — quando necessario — vicinanze già utilizzate (che restano comunque fortemente penalizzate e vengono segnalate nel Report). <b>Le incompatibilità di livello 3 e le posizioni PRIMA e FISSO, invece, non vengono mai violate</b>.</li>
-              <li>Le rotazioni a coppie e a terzetti sono indipendenti. Un precedente nell'altra modalità può essere segnalato nel Report, ma non incide nella generazione corrente.</li>
+              <li>
+              <b>Mensile (un mese)</b>: genera una sola disposizione. Al termine di un'elaborazione mensile si aprirà la scheda "Aula", mostrandoti il layout con la distribuzione dei banchi, e ti consentirà di consultare un "Report" con tutte le informazioni necessarie sul tipo di abbinamenti creati.<br>
+              💡 <b>L'opzione Mensile è utile per fare le prime prove e prendere confidenza con il programma</b>. È l'ideale per rendersi conto di come i vincoli impostati si traducano concretamente in assegnazioni, e ti consentirà di capire in maniera immediata come l'algoritmo, con la progressiva crescita delle assegnazioni salvate, metta in pratica la sua logica "flessibile". In questi primi approcci a «PostiPerfetti» imparerai il modo migliore per agire sui vincoli (modificandone il numero e/o l'intensità) affinché il risultato rispecchi al meglio i tuoi desiderata.
+              </li>
+              <li>
+              <b>Annuale (più mesi)</b>: genera da 1 a 10 mesi e li presenta in una "anteprima".<br>
+              💡 <b>Questa opzione è quella consigliata</b> quando sarai più consapevole di come lavora il software e dei risultati che esso è in grado di fornirti. Non solo perché copre idealmente tutti i mesi dell'anno scolastico, da settembre a giugno, ma soprattutto perché è gestita dall'algoritmo in un modo più sofisticato rispetto alla modalità "Mensile". Prova infatti tante "annate" diverse e ti propone quella con meno ripetizioni di coppie, meno incompatibilità tollerate e un maggior numero di affinità soddisfatte. Al prezzo di un tempo maggiore, ti consentirà di ottenere assegnazioni più equilibrate e maggiormente in linea con i vincoli da te impostati.<br>
+              &middot; Al termine di un'elaborazione annuale si aprirà un'<b>anteprima</b> che ti mostrerà l'intera annata <b>mese per mese</b>, con le coppie formate e un "Report" con tutte le informazioni necessarie sul tipo di abbinamenti creati. Se ti convincerà, potrai cliccare su "<b>Accetta e salva nello Storico</b>" e tutti i mesi verranno salvati in ordine; altrimenti cliccando su "<b>Scarta tutto</b>" non verrà salvato nulla (= lo "Storico" resterà esattamente com'era). Mentre il programma lavora puoi sempre fermarlo con il pulsante "<b>Annulla</b>".</li>
+              <li>
+              ⚙️ <b>Come funziona l'algoritmo</b>.<br>
+              &middot; Il programma cerca una disposizione che rispetti tutti i criteri impostati e non ripeta nessuna vicinanza già registrata. Se non trova una soluzione, ripete la ricerca mettendo progressivamente da parte le preferenze meno vincolanti: prima quelle di livello 1, poi anche quelle di livello 2 e la posizione ULTIMA.<br>
+              &middot; Solo nell’ultimo tentativo può trascurare anche le affinità di livello 3 e la preferenza per il genere misto, ammettendo — solo quando necessario — vicinanze già utilizzate (che restano comunque fortemente penalizzate e sono segnalate nel Report).<br>
+              &middot; <b>Le "incompatibilità di livello 3" e le posizioni "PRIMA" e "FISSO" non vengono MAI violate</b>.
+              </li>
+              <li>
+              NOTA: le rotazioni "a coppie" e "a terzetti" sono <b>indipendenti</b>. Un precedente nell'altra modalità verrà segnalato nel Report, ma solo a titolo informativo e senza incidere nella generazione corrente.
+              </li>
             </ul>
           </article>
 
@@ -274,11 +313,12 @@
               <li><b>Il programma segnala studenti duplicati?</b> Due allievi non possono avere lo stesso identico Cognome e Nome: aggiungi un secondo nome o una sigla.</li>
               <li><b>L'assegnazione fallisce?</b> Controlla soprattutto incompatibilità di livello 3, numero di richieste PRIMA e posti per fila. A terzetti prova, quando disponibile, l'alternativa fra coppia finale e due quartetti.</li>
               <li><b>Compaiono vicinanze già usate?</b> Dopo molte assegnazioni le combinazioni nuove possono esaurirsi. Il Report indica i riutilizzi; non è necessariamente un errore.</li>
+               <li><b>L'elaborazione fornisce solo un'annata <i>parziale</i>?</b> Significa che è stato raggiunto <b>il limite massimo, ossia 10 MINUTI</b>, prima che l'algoritmo riuscisse a completare tutti i mesi. Puoi generare quelli che rimangono con un'altra assegnazione.</li>
               <li><b>Non puoi esportare dalla tab Aula?</b> Salva prima l'assegnazione nello Storico.</li>
               <li><b>Hai modificato la classe durante l'anno?</b> Riapri il file nell'Editor, aggiorna i dati e usa di nuovo SALVA e CARICA. Elimina dallo Storico le disposizioni salvate ma mai applicate realmente.</li>
             </ul>
             <p>
-              Per i casi particolari apri il pulsante <b>Istruzioni</b> dentro il programma: la guida interna contiene il percorso completo e la tabella di risoluzione dei problemi.
+              <br>Ricorda che, cliccando sul pulsante <b>Istruzioni</b> all'interno del programma, avrai a disposizione una guida offline con tutti i passaggi da effettuare step by step, insieme alla tabella di risoluzione dei problemi.
             </p>
           </article>
 
