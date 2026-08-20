@@ -249,12 +249,14 @@ function inizializzaSito() {
         function impostaSfondoInerte(attivo) {
             if (attivo) {
                 statoInertSfondo = Array.from(document.body.children)
-                    .filter(function(el) { return el !== overlay; })
-                    .map(function(el) {
-                        const precedente = Boolean(el.inert);
-                        el.inert = true;
-                        return { el: el, precedente: precedente };
-                    });
+                .filter(function(el) {
+                    return el !== overlay && !el.contains(overlay);
+                })
+                .map(function(el) {
+                    const precedente = Boolean(el.inert);
+                    el.inert = true;
+                    return { el: el, precedente: precedente };
+                });
             } else {
                 statoInertSfondo.forEach(function(voce) {
                     voce.el.inert = voce.precedente;
