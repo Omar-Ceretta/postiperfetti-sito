@@ -14,18 +14,12 @@ fonts/LICENSE
 
 ## Risorse grafiche
 
-Le risorse grafiche o multimediali provenienti da terzi conservano i rispettivi termini di utilizzo.
+Le illustrazioni degli "omini" sono basate su una risorsa di **adi yuhanggana / Vecteezy.com**.
 
-Nel repository è presente il credito:
-
-```text
-Free Stock Footage by Vecteezy.com
-```
-
-come riportato in:
+I dettagli dell'attribuzione e della licenza sono riportati in:
 
 ```text
-img/LICENCE
+img/LICENSE
 ```
 
 ## Materiali originali
