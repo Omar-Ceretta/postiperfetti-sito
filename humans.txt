@@ -10,7 +10,7 @@
     impiegati come assistenti di programmazione (vibe coding).
 
 /* SITE */
-    Ultimo aggiornamento: 2026/08/08
+    Ultimo aggiornamento: 2026/08/21
     Linguaggio: Italiano
     Tecnologie: HTML5, CSS3, JavaScript
     Applicazione: Python 3, PySide6 (Qt), XlsxWriter
