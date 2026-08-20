@@ -25,7 +25,7 @@ Questa licenza si applica esclusivamente ai materiali originali sui quali Omar C
 Non sostituisce né modifica le licenze dei materiali di terzi presenti nel repository. In particolare:
 
 - i font presenti in `fonts/` sono soggetti alle condizioni indicate in `fonts/LICENSE`;
-- le risorse grafiche o multimediali di terzi espressamente accreditate conservano i termini indicati nei relativi file di licenza o credito, incluso `img/LICENCE`.
+- le risorse grafiche o multimediali di terzi espressamente accreditate conservano i termini indicati nei relativi file di licenza o credito, inclusi `img/LICENSE` e `img/icone/LICENSE`.
 
 La licenza Creative Commons non concede diritti su eventuali marchi o segni distintivi oltre a quanto previsto dalla legge applicabile.
 
