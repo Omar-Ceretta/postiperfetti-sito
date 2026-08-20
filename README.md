@@ -39,7 +39,7 @@ Il flusso di lavoro è semplice:
 3. lo script aggiorna gli HTML generati nella root e ricrea `dist/`;
 4. si può controllare localmente il risultato;
 5. è possibile quindi caricare nel repository i file sorgente modificati e gli HTML rigenerati;
-6. per la pubblicazione sul server (**Netifly.com**, nel caso specifico) viene usato direttamente il contenuto di `dist/`.
+6. per la pubblicazione sul server (**Netlify.com**, nel caso specifico) viene usato direttamente il contenuto di `dist/`.
 
 ## ⟳ Build
 
