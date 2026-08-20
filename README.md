@@ -73,7 +73,7 @@ In sintesi, è consentito condividere e adattare il materiale, purché:
 - non ne venga fatto uso commerciale;
 - eventuali versioni derivate siano condivise con la stessa licenza.
 
-I materiali di terzi, in particolare i font e le risorse espressamente accreditate, conservano le rispettive licenze. Vedi [LICENSE.md](LICENSE.md), [CREDITS.md](CREDITS.md), `fonts/LICENSE` e `img/LICENCE`.
+I materiali di terzi, in particolare i font e le risorse espressamente accreditate, conservano le rispettive licenze. Vedi [LICENSE.md](LICENSE.md), [CREDITS.md](CREDITS.md), `fonts/LICENSE` e `img/LICENSE`.
 
 La licenza del sito è distinta dalla **GNU GPLv3** usata per il programma «PostiPerfetti».
 
